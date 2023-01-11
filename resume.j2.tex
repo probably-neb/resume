@@ -1,0 +1,51 @@
+% header
+\documentclass[a4paper]{article}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage[
+nomarginpar,
+headheight=26pt
+]{geometry}
+
+\pagestyle{fancy}
+% \addtolength{\topmargin}{-12pt}
+% \addtolength{\headheight}{24pt}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[C]{
+    \textbf{\Large Ben Kunkle} \\
+    \textbf{<<header_info|join(" | ")>>}
+}
+\begin{document}
+\section*{Skills}
+\begin{multicols}{2}
+\begin{description}
+    \item [ Software Tools: ] <<tools|join(", ")>>
+        \columnbreak
+    \item [ Languages: ] <<languages|join(", ")>>
+\end{description}
+\end{multicols}
+\section*{Projects}
+<# for project in projects #>
+<# with name=project.name, short=project.short, skills=project.skills,steps=project.steps #>
+\large
+\textbf{<<name>>} | \normalsize \textit{<<short>>} \\\
+\normalsize Languages and Tools: <<skills|join(", ")>>
+\begin{enumerate}
+<# for step in steps #>
+\item <<step>>
+<# endfor #>
+\end{enumerate}
+% \textit{you can check it out at }\underline{\url{<<project.url>>}}
+<# endwith #>
+<# endfor #>
+
+\section*{Education}
+\subsection*{California State Polytechnic University}
+Pursuing Bachelor of Science Degree in Computer Science - Sept 2021 to present
+\begin{itemize}
+    \item Notable Completed Courses: <<calpoly.notable_completed|join(", ")>>
+\end{itemize}
+
+\end{document}

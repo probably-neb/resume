@@ -1,0 +1,55 @@
+{
+    "header_info": [
+        "(847) 848-8813",
+        "\\href{mailto:ben.kunkle@gmail.com}{ben.kunkle@gmail.com}",
+        "\\href{https://github.com/probably-neb}{github.com/probably-neb}",
+        "\\href{https://nebsite.website}{nebsite.website}"
+    ],
+    "languages": [
+        "Python",
+        "Rust",
+        "Java",
+        "Html",
+        "C"
+    ],
+    "tools": [
+        "Vim",
+        "Git",
+        "Linux"
+    ],
+    "projects": [
+        {
+            "name": "Ant Sim",
+            "url": "https://nebsite.website/ant_sim/ant_sim.html",
+            "short": "Simulating retreival of data in a Peer-To-Peer Network with a system inspired by Ant Pheromones",
+            "skills": [
+                "skill 1",
+                "skill 2"
+            ],
+            "steps": [
+                "step 1",
+                "step 2",
+                "step 3"
+            ]
+        }
+    ],
+    "calpoly": {
+        "notable_completed": [
+            "Data Structures",
+            "Computer Architecture",
+            "Systems Programming",
+            "Discrete Structures"
+        ],
+        "completed": [
+            "Data Structures",
+            "Proj-Based Obj-Oriented Programming \\& Design",
+            "Computer Architecture",
+            "Systems Programming",
+            "Introduction to Computer Organization",
+            "Discrete Structures"
+        ],
+        "current": [
+            "Design \\& Analysis of Algorithms"
+        ]
+    }
+}
