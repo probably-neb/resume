@@ -1,5 +1,5 @@
 import jinja2
-import json
+import tomli
 
 env = jinja2.Environment(
         loader=jinja2.FileSystemLoader("."),
@@ -11,5 +11,6 @@ env = jinja2.Environment(
         variable_end_string=">>",
      )
 TEMPLATE = env.get_template("resume.j2.tex")
-info = json.load(open('info.json','r'))
+info = tomli.load(open('info.toml','rb'))
+# print(info)
 print(TEMPLATE.render(**info))

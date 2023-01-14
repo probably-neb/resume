@@ -1,0 +1,53 @@
+header_info = [
+    "(847) 848-8813",
+    "\\href{mailto:ben.kunkle@gmail.com}{ben.kunkle@gmail.com}",
+    "\\href{https://github.com/probably-neb}{github.com/probably-neb}",
+    "\\href{https://nebsite.website}{nebsite.website}",
+]
+
+languages = [ "Python", "Rust", "Java", "Html", "C" ]
+tools= [ "Vim", "Git", "Linux" ]
+
+
+[[projects]]
+name = "Ant Simulation"
+type = "Personal Project"
+url = "https://nebsite.website/ant_sim/ant_sim.html"
+short = "Simulating date retreival in peer-to-peer networks with a system inspired by ants"
+skills= [ "Algorithms", "Rust", "Game Dev", "Simulation", "Research" ]
+steps = [
+    "Organized research from various papers and online resources on Peer-To-Peer Networks as well as ant pheromone systems",
+    "Implemented a design based off of my research and iteratively improved the design",
+    "Optimized the performance of the program performing intensive benchmarks at each step to measure and verify progress",
+    "Created a blog-style report on my website documenting my process and compiled the program to WebAssembly so readers could run it and see the executiong themselves",
+]
+
+[[projects]]
+name = "Millipyde"
+exclude = true
+type = "Research Project"
+url = "https://digitalcommons.calpoly.edu/theses/2374/"
+short = "Tool that adds gpu backed arrays and images to python"
+steps = [
+    "Wrote tests comparing the tool to OpenCV, Pillow, Scikit-Image, etc",
+]
+
+
+[calpoly]
+notable_completed = [
+    "Data Structures",
+    "Computer Architecture",
+    "Systems Programming",
+    "Discrete Structures"
+]
+completed = [
+    "Data Structures",
+    "Proj-Based Obj-Oriented Programming & Design",
+    "Computer Architecture",
+    "Systems Programming",
+    "Introduction to Computer Organization",
+    "Discrete Structures",
+]
+current = [
+    "Design & Analysis of Algorithms"
+]
