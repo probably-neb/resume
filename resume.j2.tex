@@ -1,11 +1,11 @@
-% header
-\documentclass[a4paper]{article}
+\documentclass[a4paper, 10pt]{article}
 \usepackage{fancyhdr}
 \usepackage{hyperref}
 \usepackage{multicol}
+\usepackage{enumitem}
 \usepackage[
-nomarginpar,
-headheight=26pt
+    nomarginpar,
+    headheight=26pt
 ]{geometry}
 
 \pagestyle{fancy}
@@ -14,38 +14,46 @@ headheight=26pt
 \fancyhead{}
 \fancyfoot{}
 \fancyhead[C]{
-    \textbf{\Large Ben Kunkle} \\
+    \textbf{Ben Kunkle} \\
     \textbf{<<header_info|join(" | ")>>}
-}
-\begin{document}
-\section*{Skills}
-\begin{multicols}{2}
-\begin{description}
-    \item [ Software Tools: ] <<tools|join(", ")>>
-        \columnbreak
-    \item [ Languages: ] <<languages|join(", ")>>
-\end{description}
-\end{multicols}
-\section*{Projects}
-<# for project in projects #>
-<# with name=project.name, short=project.short, skills=project.skills,steps=project.steps #>
-\large
-\textbf{<<name>>} | \normalsize \textit{<<short>>} \\\
-\normalsize Languages and Tools: <<skills|join(", ")>>
-\begin{enumerate}
-<# for step in steps #>
-\item <<step>>
-<# endfor #>
-\end{enumerate}
-% \textit{you can check it out at }\underline{\url{<<project.url>>}}
-<# endwith #>
-<# endfor #>
+    }
+    \begin{document}
+    \section*{Skills}
+    \begin{multicols}{2}
+        \begin{description}
+            \item [ Software Tools: ] <<tools|join(", ")>>
+                \columnbreak
+            \item [ Languages: ] <<languages|join(", ")>>
+        \end{description}
+    \end{multicols}
 
-\section*{Education}
-\subsection*{California State Polytechnic University}
-Pursuing Bachelor of Science Degree in Computer Science - Sept 2021 to present
-\begin{itemize}
-    \item Notable Completed Courses: <<calpoly.notable_completed|join(", ")>>
-\end{itemize}
+    \section*{Projects}
+    \begin{description}
+            <# for project in projects|rejectattr("exclude") #>
+        \item[<<project.name>>] \textit{<< project.type if project.type is defined >>}<< " | \\texttt{\\small \\url{" + project.url +"}}" if project.url is defined>>
+            \begin{description}
+                \item [ Languages and Tools ] <<project.skills|join(", ")>>
+                \item [ Short ] <<project.short>>
+                \item [ Long ]\mbox{}
+                    <# if project.steps #>
+                    \begin{enumerate}[label=(\Roman*)]
+                            <# for step in project.steps #>
+                        \item <<step>>
+                            <# endfor #>
+                    \end{enumerate}
+                    <# endif #>
+            \end{description}
+            % \textit{you can check it out at }\underline{\url{<<project.url>>}}
+            <# endfor #>
+    \end{description}
 
-\end{document}
+    \section*{Education}
+    \begin{description}
+        \item [ California State Polytechnic University ]\mbox{}
+    \begin{description}
+        \item [Pursuing] Bachelor of Science Degree in Computer Science - Sept 2021 to present
+        \item [Notable Completed Courses] <<calpoly.notable_completed|join(", ")>>
+    \end{description}
+    \end{description}
+
+    \end{document}
