@@ -1,13 +1,43 @@
-header_info = [
-    "(847) 848-8813",
-    "\\href{mailto:ben.kunkle@gmail.com}{ben.kunkle@gmail.com}",
-    "\\href{https://github.com/probably-neb}{github.com/probably-neb}",
-    "\\href{https://nebsite.website}{nebsite.website}",
-]
+[languages]
+Python=""
+Rust=""
+Java=""
+Html=""
+C=""
+Lua=""
 
-languages = [ "Python", "Rust", "Java", "Html", "C" ]
-tools= [ "Vim", "Git", "Linux" ]
+[tools]
+vim=""
+Git=""
+Linux=""
 
+[[header_info]]
+icon = "Phone"
+val = "(847) 848-8813"
+
+[[header_info]]
+val = "mailto:ben.kunkle@gmail.com"
+icon="At"
+pretty = "ben.kunkle@gmail.com"
+href = true
+
+[[header_info]]
+val = "https://github.com/probably-neb"
+icon = "Github"
+pretty = "github.com/probably-neb"
+href = true
+
+[[header_info]]
+val = "https://nebsite.website"
+icon="Globe"
+pretty = "nebsite.website"
+href = true
+
+[[header_info]]
+val = "https://www.linkedin.com/in/benjamin-kunkle/"
+icon="Linkedin"
+pretty="linkedin.com/in/benjamin-kunkle"
+href=true
 
 [[projects]]
 name = "Ant Simulation"
@@ -16,10 +46,26 @@ url = "https://nebsite.website/ant_sim/ant_sim.html"
 short = "Simulating date retreival in peer-to-peer networks with a system inspired by ants"
 skills= [ "Algorithms", "Rust", "Game Dev", "Simulation", "Research" ]
 steps = [
-    "Organized research from various papers and online resources on Peer-To-Peer Networks as well as ant pheromone systems",
-    "Implemented a design based off of my research and iteratively improved the design",
-    "Optimized the performance of the program performing intensive benchmarks at each step to measure and verify progress",
-    "Created a blog-style report on my website documenting my process and compiled the program to WebAssembly so readers could run it and see the executiong themselves",
+    "Conducted research on P2P networks inspired by ant pheromone systems and Developed a simulation for displaying one of the implementations algorithm.",
+    "Developed a toolkit for benchmarking the program after each improvement to measure and verify progress",
+    "Created a comprehensive report documenting the research and design process, including a live demonstration of the program using WebAssembly"
+]
+
+[[projects]]
+exclude=true
+name="Wave Function Collapse"
+type="Personal Project"
+short=""
+
+[[projects]]
+name="CSC-357"
+type="College Coursework"
+skills = [ "C", "Algorithms", "Data Structures", "Operating Systems" ]
+short = "Completed several systems programming projects utilizing C programming language, fostering a strong passion for the field."
+steps = [
+    "fw: a cli program that returned the most frequent words from it's input. It was implemented using a trie datastructure and could process one million words in under a second",
+    "mytalk: slimmed down implementation of GNU talk allowing connection and conversation with other users through TCP",
+    "mytar: slimmed down implementation of GNU tar with support for "
 ]
 
 [[projects]]

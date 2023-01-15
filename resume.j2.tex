@@ -1,59 +1,103 @@
-\documentclass[a4paper, 10pt]{article}
+\documentclass[a4paper,10pt]{extarticle}
+
+\usepackage[dvipsnames]{xcolor}
+
+\pagecolor{brown!5}
+\colorlet{body}{black!10}
+\colorlet{accent}{Sepia}
+\usepackage{fontspec}
+\setmonofont{SourceCodeProNerdMono}[
+    Path=./SourceCodeProNerdMono/,
+    Scale=0.85,
+    Extension = .ttf,
+    UprightFont=*-Regular, % it's the only one without Bold or Italic between Pro and Nerd
+    ItalicFont=*-Italic,
+    BoldFont=*-Bold,
+    BoldItalicFont=*-BoldItalic,
+    ]
+
 \usepackage{fancyhdr}
+% \titleformat{\section}{\Large}{1em}
+%     {\normalfont\Large}{1em}
+% {\rule{\textwidth}{2pt}\newline}
+
+\usepackage{fontawesome}
+\usepackage{dashrule}
+\newcommand{\dashedrule}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}
+\usepackage{titlesec}
+\titleformat{\section}[block] {\sffamily}{SECTION\ \thesubsubsection}{0.3em}{\bfseries\fontsize{14}{12} \selectfont}[\vskip 0.2ex \dashedrule]
 \usepackage{hyperref}
 \usepackage{multicol}
-\usepackage{enumitem}
+\usepackage[inline]{enumitem}
+\newlist{projects}{description}{4}
+\setlist[projects]{after=\leavevmode\rule{\linewidth}{0.2pt}}
+
+\newlist{iconlist}{description*}{1}
+\setlist[iconlist]{mode=unboxed, itemjoin={\hspace{4mm}}, labelsep*=0.1pt, itemindent=0.2pt,leftmargin=0.1pt, labelwidth=0pt, format=\color{BrickRed}}
+
+\setlist[projects,enumerate,itemize,description]{leftmargin=0.25in, format=\color{accent}}
+
 \usepackage[
     nomarginpar,
-    headheight=26pt
+    headheight=50pt,
+    top=1.2in,
+    left=0.5in,
+    right=0.5in,
 ]{geometry}
 
 \pagestyle{fancy}
 % \addtolength{\topmargin}{-12pt}
 % \addtolength{\headheight}{24pt}
-\fancyhead{}
-\fancyfoot{}
+% \fancyhead{}
+% \fancyfoot{}
 \fancyhead[C]{
-    \textbf{Ben Kunkle} \\
-    \textbf{<<header_info|join(" | ")>>}
-    }
-    \begin{document}
-    \section*{Skills}
-    \begin{multicols}{2}
+    \texttt{\textbf{\Huge Ben Kunkle}}\\
+% \begin{minipage}{\textwidth}
+            \begin{iconlist}
+                <# for item in header_info #>%
+            \item[\fa<<item.icon>>]\texttt{<<item.val>>}%
+                <# endfor #>%
+            \end{iconlist}%
+% \end{minipage}
+}
+% \textbf{<<header_info|join(" ")>>}
+
+\begin{document}
+\section*{Skills}
+\begin{multicols}{2}
+    \begin{description}[style=nextline]
+        \item [ Software Tools: ] \begin{iconlist} <# for tool,icon in tools.items() #> \item [\texttt{\Large <<icon>>}]<<tool>> <# endfor #>\end{iconlist}
+            \columnbreak
+        \item [ Languages: ] \begin{iconlist} <# for lang,icon in languages.items() #> \item [\texttt{\large <<icon>>}]<<lang>> <# endfor #> \end{iconlist}
+    \end{description}
+\end{multicols}
+
+\section*{Projects}
+\begin{description}
+        <# for project in projects #>
+    \item[<<project.name>>] \textit{<< project.type if project.type is defined >>} << " | " + project.url if project.url is defined>>
+        \begin{projects}
+        \item [ Languages and Tools ] <<project.skills|join(", ")>>
+        \item [ Short ] <<project.short>>
+        \item [ Long ]
+            <# if project.steps #>
+            \begin{itemize} %[label=(\Roman*)]
+                    <# for step in project.steps #>
+                \item <<step>>
+                    <# endfor #>
+            \end{itemize}
+            <# endif #>
+        \end{projects}
+        <# endfor #>
+\end{description}
+
+\section*{Education}
+\begin{description}
+    \item [ California State Polytechnic University ]\mbox{}
         \begin{description}
-            \item [ Software Tools: ] <<tools|join(", ")>>
-                \columnbreak
-            \item [ Languages: ] <<languages|join(", ")>>
+            \item [Pursuing] Bachelor of Science Degree in Computer Science - Sept 2021 to present
+            \item [Notable Completed Courses] <<calpoly.notable_completed|join(", ")>>
         \end{description}
-    \end{multicols}
+\end{description}
 
-    \section*{Projects}
-    \begin{description}
-            <# for project in projects|rejectattr("exclude") #>
-        \item[<<project.name>>] \textit{<< project.type if project.type is defined >>}<< " | \\texttt{\\small \\url{" + project.url +"}}" if project.url is defined>>
-            \begin{description}
-                \item [ Languages and Tools ] <<project.skills|join(", ")>>
-                \item [ Short ] <<project.short>>
-                \item [ Long ]\mbox{}
-                    <# if project.steps #>
-                    \begin{enumerate}[label=(\Roman*)]
-                            <# for step in project.steps #>
-                        \item <<step>>
-                            <# endfor #>
-                    \end{enumerate}
-                    <# endif #>
-            \end{description}
-            % \textit{you can check it out at }\underline{\url{<<project.url>>}}
-            <# endfor #>
-    \end{description}
-
-    \section*{Education}
-    \begin{description}
-        \item [ California State Polytechnic University ]\mbox{}
-    \begin{description}
-        \item [Pursuing] Bachelor of Science Degree in Computer Science - Sept 2021 to present
-        \item [Notable Completed Courses] <<calpoly.notable_completed|join(", ")>>
-    \end{description}
-    \end{description}
-
-    \end{document}
+\end{document}
