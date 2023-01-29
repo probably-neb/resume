@@ -26,7 +26,7 @@ info['header_info'] = formatted_header_info
 to_remove = []
 # format url in project info
 for i, p in enumerate(info['projects']):
-    if p.get('exclude') or (p.get('include')==False):
+    if p.get('exclude') or (p.get('include') is False):
         to_remove.append(p)
     if (url := p.get('url')):
         info['projects'][i]['url'] = "\\texttt{\\small \\url{"+url+"}}"

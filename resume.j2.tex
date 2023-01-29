@@ -1,9 +1,10 @@
 \documentclass[a4paper,10pt]{extarticle}
+\pagestyle{empty}
 
 \usepackage[dvipsnames]{xcolor}
 
 \pagecolor{brown!5}
-\colorlet{body}{black!10}
+% \colorlet{body}{black!10}
 \colorlet{accent}{Sepia}
 \usepackage{fontspec}
 \setmonofont{SourceCodeProNerdMono}[
@@ -15,19 +16,19 @@
     BoldFont=*-Bold,
     BoldItalicFont=*-BoldItalic,
     ]
-
-\usepackage{fancyhdr}
-% \titleformat{\section}{\Large}{1em}
-%     {\normalfont\Large}{1em}
-% {\rule{\textwidth}{2pt}\newline}
-
 \usepackage{fontawesome}
 \usepackage{dashrule}
 \newcommand{\dashedrule}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}
 \usepackage{titlesec}
-\titleformat{\section}[block] {\sffamily}{SECTION\ \thesubsubsection}{0.3em}{\bfseries\fontsize{14}{12} \selectfont}[\vskip 0.2ex \dashedrule]
+
+\titleformat{\section}[block] {\sffamily}{SECTION\ \thesubsubsection}{0.3em}{\bfseries\fontsize{14}{12} \selectfont}[\vskip 1pt \dashedrule]
+\setlength{\parskip}{0pt}
+\titlespacing*{\section}{0pt}{4pt}{4pt}%{-5pt}
+
 \usepackage{hyperref}
+
 \usepackage{multicol}
+
 \usepackage[inline]{enumitem}
 \newlist{projects}{description}{4}
 \setlist[projects]{after=\leavevmode\rule{\linewidth}{0.2pt}}
@@ -39,53 +40,51 @@
 
 \usepackage[
     nomarginpar,
-    headheight=50pt,
-    top=1.2in,
+    headheight=79pt,
+    top=1.8in,
     left=0.5in,
     right=0.5in,
 ]{geometry}
 
+\usepackage{fancyhdr}
 \pagestyle{fancy}
-% \addtolength{\topmargin}{-12pt}
-% \addtolength{\headheight}{24pt}
-% \fancyhead{}
-% \fancyfoot{}
 \fancyhead[C]{
     \texttt{\textbf{\Huge Ben Kunkle}}\\
-% \begin{minipage}{\textwidth}
+            \medskip
             \begin{iconlist}
                 <# for item in header_info #>%
             \item[\fa<<item.icon>>]\texttt{<<item.val>>}%
                 <# endfor #>%
             \end{iconlist}%
-% \end{minipage}
-}
-% \textbf{<<header_info|join(" ")>>}
-
-\begin{document}
-\section*{Skills}
-\begin{multicols}{2}
-    \begin{description}[style=nextline]
+\begin{multicols}{2} \begin{description} %[style=nextline]
         \item [ Software Tools: ] \begin{iconlist} <# for tool,icon in tools.items() #> \item [\texttt{\Large <<icon>>}]<<tool>> <# endfor #>\end{iconlist}
             \columnbreak
         \item [ Languages: ] \begin{iconlist} <# for lang,icon in languages.items() #> \item [\texttt{\large <<icon>>}]<<lang>> <# endfor #> \end{iconlist}
     \end{description}
 \end{multicols}
+}
+% remove footer
+\fancyfoot[C]{}
 
-\section*{Projects}
+\begin{document}
+% \section*{Skills}
+
+\section*{Experience}
 \begin{description}
         <# for project in projects #>
-    \item[<<project.name>>] \textit{<< project.type if project.type is defined >>} << " | " + project.url if project.url is defined>>
+    \item[<<project.name>>] \textit{<< project.type if project.type is defined >>} << " | " + project.url if project.url is defined>> << " | " + project.dates if project.dates is defined>>
         \begin{projects}
-        \item [ Languages and Tools ] <<project.skills|join(", ")>>
-        \item [ Short ] <<project.short>>
-        \item [ Long ]
+        \item [ Skills ] <<project.skills|join(", ")>>
+        \item [ Description ] <<project.short>>
             <# if project.steps #>
-            \begin{itemize} %[label=(\Roman*)]
+            <# set list_type = "description" if project.desc_long else "itemize" #>
+        % \item []
+            \begin{<<list_type>>} %[label=(\Roman*)]
                     <# for step in project.steps #>
                 \item <<step>>
                     <# endfor #>
-            \end{itemize}
+            \end{<<list_type>>}
+            % <# endwhere #>
             <# endif #>
         \end{projects}
         <# endfor #>
