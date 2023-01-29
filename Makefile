@@ -12,7 +12,7 @@ pdf:
 
 # github release
 release: all
-	gh release create $(shell date +%m-%d-%y) --draft --notes "" ./resume.pdf
+	./make_release.sh
 
 # preview
 prev: all
