@@ -31,6 +31,6 @@ read -r -p "Notes: " notes
 
 # argv[1:]
 # mainly for ./make_release.sh --draft
-args=$*
+# args=$*
 
 gh release create "$(date +%m-%d-%y)" --notes "${notes}" ./resume.pdf

@@ -1,6 +1,7 @@
 [languages]
 Python=""
 Rust=""
+Javascript=""
 # Html=""
 Java=""
 C=""
@@ -46,7 +47,7 @@ exclude = false
 skills = ["Team Work", "Collaboration"]
 type = "Research Project"
 url = "https://digitalcommons.calpoly.edu/theses/2374/"
-short = "A project I recently became involved with working on a tool that adds datatypes for gpu backed arrays and images to Python"
+short = "Working on benchmarking a tool that adds datatypes for gpu backed arrays and images to Python"
 
 [[projects]]
 name = "Ant Simulation"
@@ -62,14 +63,14 @@ steps = [
 
 [[projects]]
 name="Wave Function Collapse"
-url = "https://nebsite.website/modules/wfc-rust/index.html"
+url = "https://wfc-tau.vercel.app"
 type="Personal Project"
 short="Implementation of Wave Function Collapse, the constraint based bitmap generation algorithm created by Maxim Gumin."
 skills = ["Algorithms", "Adaptability", "Haskell", "Rust"]
 steps = [
-    "Implemented algorithm in Haskell, but quickly hit dead ends.",
-    "Rewrote it in Rust to gain new perspective.",
-    "Used winit and wgpu created a desktop and a web based viewer for the Rust implementation."
+    "Implemented algorithm in Haskell, as well as rust.",
+    "Extended the original algorithm to process wang tiles.",
+    "Compiled the Rust implementation to WASM and built a web viewer for the project using SolidJS"
 ]
 
 [[projects]]
@@ -104,16 +105,21 @@ notable_completed = [
     "Data Structures",
     "Computer Architecture",
     "Systems Programming",
-    "Discrete Structures"
+    "Discrete Structures",
+    "Design and Analysis of Algorithms",
+    "Proj-Based Obj-Oriented Programming and Design"
 ]
 completed = [
     "Data Structures",
-    "Proj-Based Obj-Oriented Programming & Design",
+    "Proj-Based Obj-Oriented Programming and Design",
     "Computer Architecture",
     "Systems Programming",
     "Introduction to Computer Organization",
     "Discrete Structures",
+    "Design and Analysis of Algorithms"
 ]
 current = [
-    "Design & Analysis of Algorithms"
+    "Programming Languages",
+    "Theory of Computation",
+    "Software Engineering"
 ]
