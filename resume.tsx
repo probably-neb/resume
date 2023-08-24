@@ -59,6 +59,9 @@ const Resume: FC<ResumeProps> = ({config}) => {
 async function generatePDFPuppeteer(): Promise<Buffer> {
     const config = loadConfig();
     const resume = renderToString(<Resume config={config}/>);
+    fs.writeFile("resume.html", resume, (err) => {
+        if (err) console.error(err);
+    });
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setContent(resume);
