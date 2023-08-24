@@ -29,6 +29,7 @@ const EducationSchema = z.object({
 export type Education = z.infer<typeof EducationSchema>;
 
 const ConfigSchema = z.object({
+    blurb: z.string(),
     languages: z.record(z.string(), z.string()),
     tools: z.record(z.string(), z.string()),
     header_info: z.array(ContactInfoSchema),

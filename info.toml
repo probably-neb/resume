@@ -1,3 +1,5 @@
+blurb = "Hi! I'm an asipiring Software Engineer that truly loves to program. I love languages, systems programming, and web development. I use any free time I have on personal projects through which I explore new tools, languages, and ideas."
+
 [languages]
 Python=""
 Rust=""
@@ -42,8 +44,6 @@ val = "https://www.linkedin.com/in/benjamin-kunkle/"
 icon="Linkedin"
 pretty="benjamin-kunkle"
 href=true
-
-personal_description = "Hi! I'm an asipiring Software Engineer that truly loves to program. I love languages, systems programming, and web development. I use any free time I have on personal projects through which I explore new tools, languages, and ideas."
 
 [[projects]]
 name = "Millipyde"
