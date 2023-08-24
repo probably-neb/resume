@@ -1,0 +1,19 @@
+{
+	"name": "resume",
+	"main": "resume.tsx",
+	"type": "module",
+	"dependencies": {
+		"puppeteer": "^21.1.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20.5.4",
+		"@types/react": "^18.2.21",
+		"@types/react-dom": "^18.2.7",
+		"tailwindcss": "^3.3.3",
+		"ts-node": "^10.9.1",
+		"tsx": "^3.12.7",
+		"typescript": "^5.2.2"
+	}
+}

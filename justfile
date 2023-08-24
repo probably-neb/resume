@@ -3,17 +3,13 @@ BUILD_DIR := "build"
 default:
     @just --list
 
-build: template pdf
-
-template:
-	. env/bin/activate && python3 template.py > {{BUILD_DIR}}/resume.tex
+build: pdf
 
 pdf:
-	latexmk -xelatex -output-directory={{BUILD_DIR}} {{BUILD_DIR}}/resume.tex
-	mv build/resume.pdf .
+	pnpx tsx resume.tsx
 
 watch:
-	ls info.toml template.py resume.j2.tex | entr -s "just build"
+	ls info.toml resume.tsx | entr -s "just build"
 
 # github release
 release: build
