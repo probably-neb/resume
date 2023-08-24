@@ -18,7 +18,7 @@ info = tomli.load(open('info.toml','rb'))
 header_info = info['header_info']
 formatted_header_info = []
 for h_info in header_info:
-    if h_info.get('href'):
+    if h_info.get('href', False):
         h_info["val"] = f"\\href{{{h_info['val']}}}{{{h_info['pretty']}}}"
     formatted_header_info.append(h_info)
 info['header_info'] = formatted_header_info
