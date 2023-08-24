@@ -1,7 +1,6 @@
-ACTIVATE=${PWD}/env/bin/activate
 BUILD=build
 
-all: template pdf
+build: template pdf
 
 template:
 	. env/bin/activate && python3 template.py > ${BUILD}/resume.tex
@@ -10,12 +9,15 @@ pdf:
 	latexmk -xelatex -output-directory=${BUILD} ${BUILD}/resume.tex
 	mv build/resume.pdf .
 
+watch:
+	ls info.toml template.py resume.j2.tex | entr -s "make build"
+
 # github release
 release: all
 	./make_release.sh
 
 # preview
-prev: all
+preview:
 	zathura ./resume.pdf &
 
 # dropbox link
