@@ -6,7 +6,7 @@ default:
 build: template pdf
 
 template:
-	. env/bin/activate && python3 template.py > {{BUILD_DIR}}/resume.tex
+	python3 template.py > {{BUILD_DIR}}/resume.tex
 
 pdf:
 	latexmk -xelatex -output-directory={{BUILD_DIR}} {{BUILD_DIR}}/resume.tex
