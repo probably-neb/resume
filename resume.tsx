@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { renderToString } from "react-dom/server";
+import { renderToString, renderToStaticNodeStream } from "react-dom/server";
 import puppeteer from "puppeteer";
 import fs from "fs";
 import {
@@ -9,6 +9,10 @@ import {
     Education,
     Project,
 } from "./src/config";
+
+import util from "util";
+import stream from "stream";
+const asyncPipe = util.promisify(stream.pipeline);
 
 interface DividerProps {}
 const Divider: FC<DividerProps> = () => {
@@ -56,12 +60,20 @@ const Resume: FC<ResumeProps> = ({config}) => {
     );
 };
 
-async function generatePDFPuppeteer(): Promise<Buffer> {
+type ReactElement = React.ReactElement<
+    any,
+    string | React.JSXElementConstructor<any>
+>;
+
+async function saveHTML(element: ReactElement): Promise<void> {
+    let readable = renderToStaticNodeStream(element);
+    let writeable = fs.createWriteStream("resume.html");
+    await asyncPipe(readable, writeable);
+}
+
+async function generatePDF(): Promise<Buffer> {
     const config = loadConfig();
-    const resume = renderToString(<Resume config={config}/>);
-    fs.writeFile("resume.html", resume, (err) => {
-        if (err) console.error(err);
-    });
+    const resume = renderToString(<Resume config={config} />);
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setContent(resume);
@@ -70,8 +82,10 @@ async function generatePDFPuppeteer(): Promise<Buffer> {
     return pdf;
 }
 
-generatePDFPuppeteer().then((pdf) => {
+function savePDF(pdf: Buffer): void {
     fs.writeFile("resume.pdf", pdf, (err) => {
         if (err) console.error(err);
     });
-});
+}
+
+Promise.all([generatePDF().then(savePDF), saveHTML(<Resume config={loadConfig()} />)]);
