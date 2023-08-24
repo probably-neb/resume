@@ -9,6 +9,7 @@ pdf:
 	pnpx tsx resume.tsx
 
 serve: pdf
+    @just watch &
     browser-sync start --server --index resume.html --files resume.html
 
 watch:
