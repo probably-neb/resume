@@ -1,17 +1,19 @@
 [languages]
 Python=""
 Rust=""
-Javascript=""
+Typescript=""
 # Html=""
 Java=""
 C=""
-# Go=""
+Go=""
 Lua=""
 
 [tools]
 vim=""
 Git=""
 Linux=""
+Vercel="△"
+NextJS="△"
 
 [[header_info]]
 icon = "Phone"
@@ -41,6 +43,8 @@ icon="Linkedin"
 pretty="benjamin-kunkle"
 href=true
 
+personal_description = "Hi! I'm an asipiring Software Engineer that truly loves to program. I love languages, systems programming, and web development. I use any free time I have on personal projects through which I explore new tools, languages, and ideas."
+
 [[projects]]
 name = "Millipyde"
 exclude = false
@@ -66,7 +70,7 @@ name="Wave Function Collapse"
 url = "https://wfc-tau.vercel.app"
 type="Personal Project"
 short="Implementation of Wave Function Collapse, the constraint based bitmap generation algorithm created by Maxim Gumin."
-skills = ["Algorithms", "Adaptability", "Haskell", "Rust"]
+skills = ["Algorithms", "Prototyping", "Haskell", "Rust"]
 steps = [
     "Implemented algorithm in Haskell, as well as rust.",
     "Extended the original algorithm to process wang tiles.",
@@ -107,7 +111,10 @@ notable_completed = [
     "Systems Programming",
     "Discrete Structures",
     "Design and Analysis of Algorithms",
-    "Proj-Based Obj-Oriented Programming and Design"
+    "Proj-Based Obj-Oriented Programming and Design",
+    "Programming Languages",
+    "Theory of Computation",
+    "Software Engineering"
 ]
 completed = [
     "Data Structures",
@@ -119,7 +126,5 @@ completed = [
     "Design and Analysis of Algorithms"
 ]
 current = [
-    "Programming Languages",
-    "Theory of Computation",
-    "Software Engineering"
+    "Intro to "
 ]
