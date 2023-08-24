@@ -1,6 +1,7 @@
 import React, { FC } from "react";
-import ReactPDF, { Document, Page, Text, View } from "@react-pdf/renderer";
-import { createTw } from "react-pdf-tailwind";
+import { renderToString } from "react-dom/server";
+import puppeteer from "puppeteer";
+import fs from "fs";
 import {
     loadConfig,
     Config,
@@ -8,16 +9,6 @@ import {
     Education,
     Project,
 } from "./src/config";
-
-const tw = createTw({
-    theme: {
-        fontFamily: {},
-        extend: {
-            colors: {},
-        },
-    },
-});
-
 
 interface DividerProps {}
 const Divider: FC<DividerProps> = () => {
@@ -29,7 +20,7 @@ interface ContactInfoProps {
 }
 
 const ContactInfo: FC<ContactInfoProps> = ({ info }) => {
-    return <Text>{info.pretty ?? info.val}</Text>;
+    return <p>{info.pretty ?? info.val}</p>;
 };
 
 interface ContactInfoListProps {
@@ -38,31 +29,46 @@ interface ContactInfoListProps {
 
 const ContactInfoList: FC<ContactInfoListProps> = ({ infos }) => {
     return (
-        <View style={tw("flex flex-row")}>
+        <div className="flex flex-row">
             {infos.map((info) => (
                 <ContactInfo info={info} key={info.val} />
             ))}
-        </View>
+        </div>
     );
 };
 
 interface ResumeProps {
     config: Config;
 }
-
-const Resume: FC<ResumeProps> = ({ config }) => {
+const Resume: FC<ResumeProps> = ({config}) => {
     return (
-        <Document>
-            <Page style={tw("m-[0.25in]")}>
-                <View style={tw("flex flex-col")}>
-                    <Text style={tw("text-4xl text-center")}>Ben Kunkle</Text>
-                    <ContactInfoList infos={config.header_info} />
-                </View>
+        <html>
+            <head>
+                <script src="https://cdn.tailwindcss.com"></script>
+            </head>
+            <body style={{ width: "8.5in", height: "11in" }} className="">
+                <div className="flex justify-center">
+                    <p className="text-4xl">Ben Kunkle</p>
+                </div>
                 <Divider />
-            </Page>
-        </Document>
+            </body>
+        </html>
     );
 };
 
-const config = loadConfig();
-ReactPDF.render(<Resume config={config} />, "resume.pdf");
+async function generatePDFPuppeteer(): Promise<Buffer> {
+    const config = loadConfig();
+    const resume = renderToString(<Resume config={config}/>);
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setContent(resume);
+    const pdf = await page.pdf({ format: "letter" });
+    await browser.close();
+    return pdf;
+}
+
+generatePDFPuppeteer().then((pdf) => {
+    fs.writeFile("resume.pdf", pdf, (err) => {
+        if (err) console.error(err);
+    });
+});
