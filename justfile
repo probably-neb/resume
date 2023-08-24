@@ -8,6 +8,9 @@ build: pdf
 pdf:
 	pnpx tsx resume.tsx
 
+serve: pdf
+    browser-sync start --server --index resume.html --files resume.html
+
 watch:
 	ls info.toml resume.tsx | entr -s "just build"
 
