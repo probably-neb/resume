@@ -15,25 +15,18 @@ import stream from "stream";
 const asyncPipe = util.promisify(stream.pipeline);
 
 interface DividerProps {}
+
 const Divider: FC<DividerProps> = () => {
-    return <div className="w-full border-b-2 border-gray-100 my-4"></div>;
+    return <div className="w-full border-b-2 border-dashed border-gray-500 my-4"></div>;
 };
 
-interface ContactInfoProps {
-    info: ContactInfo;
-}
-
-const ContactInfo: FC<ContactInfoProps> = ({ info }) => {
+const ContactInfo: FC<{info: ContactInfo}> = ({ info }) => {
     return <p>{info.pretty ?? info.val}</p>;
 };
 
-interface ContactInfoListProps {
-    infos: ContactInfo[];
-}
-
-const ContactInfoList: FC<ContactInfoListProps> = ({ infos }) => {
+const ContactInfoList: FC<{infos: ContactInfo[]}> = ({ infos }) => {
     return (
-        <div className="flex flex-row">
+        <div className="flex flex-row justify-between">
             {infos.map((info) => (
                 <ContactInfo info={info} key={info.val} />
             ))}
@@ -44,16 +37,24 @@ const ContactInfoList: FC<ContactInfoListProps> = ({ infos }) => {
 interface ResumeProps {
     config: Config;
 }
-const Resume: FC<ResumeProps> = ({config}) => {
+const Resume: FC<ResumeProps> = ({ config }) => {
     return (
         <html>
             <head>
                 <script src="https://cdn.tailwindcss.com"></script>
             </head>
-            <body style={{ width: "8.5in", height: "11in" }} className="">
+            <body
+                style={{
+                    width: "8.5in",
+                    height: "11in",
+                    printColorAdjust: "exact",
+                }}
+                className="p-[0.25in]"
+            >
                 <div className="flex justify-center">
                     <p className="text-4xl">Ben Kunkle</p>
                 </div>
+                <ContactInfoList infos={config.header_info} />
                 <Divider />
             </body>
         </html>
