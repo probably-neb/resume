@@ -3,7 +3,7 @@ import { z } from "zod";
 const ContactInfoSchema = z.object({
     value: z.string(),
     icon: z.string(),
-    href: z.string().optional(),
+    href: z.string().url().optional(),
 });
 export type ContactInfo = z.infer<typeof ContactInfoSchema>;
 
@@ -15,7 +15,7 @@ const ProjectSchema = z.object({
     dates: z.string().optional(),
     steps: z.array(z.string()).optional(),
     type: z.string().optional(),
-    url: z.string().optional(),
+    url: z.string().url().optional(),
 });
 export type Project = z.infer<typeof ProjectSchema>;
 
