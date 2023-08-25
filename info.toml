@@ -17,33 +17,29 @@ Linux=""
 Vercel="△"
 NextJS="△"
 
-[[header_info]]
+[[contacts]]
+value = "(847) 848-8813"
 icon = "Phone"
-val = "(847) 848-8813"
 
-[[header_info]]
-val = "mailto:ben.kunkle@gmail.com"
-icon="At"
-pretty = "ben.kunkle@gmail.com"
-href = true
+[[contacts]]
+value = "ben.kunkle@gmail.com"
+icon = "At"
+href = "mailto:ben.kunkle@gmail.com"
 
-[[header_info]]
-val = "https://github.com/probably-neb"
+[[contacts]]
+value = "probably-neb"
 icon = "Github"
-pretty = "probably-neb"
-href = true
+href = "https://github.com/probably-neb"
 
-[[header_info]]
-val = "https://nebsite.website"
-icon="Globe"
-pretty = "nebsite.website"
-href = true
+[[contacts]]
+value = "nebsite.website"
+icon = "Globe"
+href = "https://nebsite.website"
 
-[[header_info]]
-val = "https://www.linkedin.com/in/benjamin-kunkle/"
-icon="Linkedin"
-pretty="benjamin-kunkle"
-href=true
+[[contacts]]
+value = "benjamin-kunkle"
+icon = "Linkedin"
+href = "https://www.linkedin.com/in/benjamin-kunkle/"
 
 [[projects]]
 name = "Millipyde"

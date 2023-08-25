@@ -3,10 +3,9 @@ import fs from "fs";
 import toml from "toml";
 
 const ContactInfoSchema = z.object({
-    val: z.string(),
+    value: z.string(),
     icon: z.string(),
-    pretty: z.string().optional(),
-    href: z.boolean().optional(),
+    href: z.string().optional(),
 });
 export type ContactInfo = z.infer<typeof ContactInfoSchema>;
 
@@ -32,7 +31,7 @@ const ConfigSchema = z.object({
     blurb: z.string(),
     languages: z.record(z.string(), z.string()),
     tools: z.record(z.string(), z.string()),
-    header_info: z.array(ContactInfoSchema),
+    contacts: z.array(ContactInfoSchema),
     projects: z.array(ProjectSchema),
     calpoly: EducationSchema,
 });

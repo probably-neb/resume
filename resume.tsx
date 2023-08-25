@@ -17,18 +17,28 @@ const asyncPipe = util.promisify(stream.pipeline);
 interface DividerProps {}
 
 const Divider: FC<DividerProps> = () => {
-    return <div className="w-full border-b-2 border-dashed border-gray-500 my-4"></div>;
+    return (
+        <div className="w-full border-b-2 border-dashed border-gray-500 my-4"></div>
+    );
 };
 
-const ContactInfo: FC<{info: ContactInfo}> = ({ info }) => {
-    return <p>{info.pretty ?? info.val}</p>;
+const ContactInfo: FC<{ info: ContactInfo }> = ({ info }) => {
+    let txt: ReactElement | string = info.value
+    if (info.href) {
+        txt = (
+            <a href={info.href} target="_blank">
+                {txt}
+            </a>
+        );
+    }
+    return <p className="text-sm">{txt}</p>;
 };
 
-const ContactInfoList: FC<{infos: ContactInfo[]}> = ({ infos }) => {
+const ContactInfoList: FC<{ infos: ContactInfo[] }> = ({ infos }) => {
     return (
         <div className="flex flex-row justify-between">
             {infos.map((info) => (
-                <ContactInfo info={info} key={info.val} />
+                <ContactInfo info={info} key={info.value} />
             ))}
         </div>
     );
@@ -54,7 +64,7 @@ const Resume: FC<ResumeProps> = ({ config }) => {
                 <div className="flex justify-center">
                     <p className="text-4xl">Ben Kunkle</p>
                 </div>
-                <ContactInfoList infos={config.header_info} />
+                <ContactInfoList infos={config.contacts} />
                 <Divider />
             </body>
         </html>
@@ -89,4 +99,7 @@ function savePDF(pdf: Buffer): void {
     });
 }
 
-Promise.all([generatePDF().then(savePDF), saveHTML(<Resume config={loadConfig()} />)]);
+Promise.all([
+    generatePDF().then(savePDF),
+    saveHTML(<Resume config={loadConfig()} />),
+]);
