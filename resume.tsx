@@ -7,6 +7,7 @@ import {
     ContactInfo,
     Education,
     Project,
+    ReactElement,
 } from "./src/config";
 import config from "./resume.config";
 
@@ -23,7 +24,7 @@ const Divider: FC<DividerProps> = () => {
 };
 
 const ContactInfo: FC<{ info: ContactInfo }> = ({ info }) => {
-    let txt: ReactElement | string = info.value
+    let txt: ReactElement | string = info.value;
     if (info.href) {
         txt = (
             <a href={info.href} target="_blank">
@@ -31,7 +32,14 @@ const ContactInfo: FC<{ info: ContactInfo }> = ({ info }) => {
             </a>
         );
     }
-    return <p className="text-sm">{txt}</p>;
+    const Icon = info.icon;
+    return (
+        <div className="flex flex-row justify-center items-center">
+            <Icon />
+            <div className="w-[4px]"></div>
+            <p className="text-sm">{txt}</p>
+        </div>
+    );
 };
 
 const ContactInfoList: FC<{ infos: ContactInfo[] }> = ({ infos }) => {
@@ -70,11 +78,6 @@ const Resume: FC<ResumeProps> = ({ config }) => {
         </html>
     );
 };
-
-type ReactElement = React.ReactElement<
-    any,
-    string | React.JSXElementConstructor<any>
->;
 
 async function saveHTML(element: ReactElement): Promise<void> {
     let readable = renderToStaticNodeStream(element);

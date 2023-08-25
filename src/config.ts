@@ -1,8 +1,14 @@
 import { z } from "zod";
 
+import React from "react";
+export type ReactElement = React.ReactElement<
+    any,
+    string | React.JSXElementConstructor<any>
+>;
+
 const ContactInfoSchema = z.object({
     value: z.string(),
-    icon: z.string(),
+    icon: z.custom<React.FunctionComponent>(),
     href: z.string().url().optional(),
 });
 export type ContactInfo = z.infer<typeof ContactInfoSchema>;
@@ -35,3 +41,5 @@ export const ConfigSchema = z.object({
     calpoly: EducationSchema,
 });
 export type Config = z.infer<typeof ConfigSchema>;
+
+

@@ -1,4 +1,8 @@
 import { Config, ConfigSchema} from "./src/config";
+import { DiGithub } from "react-icons/di"
+import { BsGlobe } from "react-icons/bs"
+import { AiFillLinkedin, AiFillPhone } from "react-icons/ai"
+import { HiMail } from "react-icons/hi"
 
 const config: Config = ConfigSchema.parse({
     blurb: "Hi! I'm an asipiring Software Engineer that truly loves to program. I love languages, systems programming, and web development. I use any free time I have on personal projects through which I explore new tools, languages, and ideas.",
@@ -23,30 +27,30 @@ const config: Config = ConfigSchema.parse({
     contacts: [
         {
             value: "(847) 848-8813",
-            icon: "Phone",
+            icon: AiFillPhone,
         },
 
         {
             value: "ben.kunkle@gmail.com",
-            icon: "At",
+            icon: HiMail,
             href: "mailto:ben.kunkle@gmail.com",
         },
 
         {
             value: "probably-neb",
-            icon: "Github",
+            icon: DiGithub,
             href: "https://github.com/probably-neb",
         },
 
         {
             value: "nebsite.website",
-            icon: "Globe",
+            icon: BsGlobe,
             href: "https://nebsite.website",
         },
 
         {
             value: "benjamin-kunkle",
-            icon: "Linkedin",
+            icon: AiFillLinkedin,
             href: "https://www.linkedin.com/in/benjamin-kunkle/",
         },
     ],
