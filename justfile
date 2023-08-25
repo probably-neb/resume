@@ -3,17 +3,15 @@ BUILD_DIR := "build"
 default:
     @just --list
 
-build: pdf
-
-pdf:
+build:
 	pnpx tsx resume.tsx
 
-serve: pdf
+serve: build
     @just watch &
     browser-sync start --server --index resume.html --files resume.html
 
 watch:
-	ls info.toml resume.tsx | entr -s "just build"
+	ls resume.config.ts resume.tsx | entr -s "just build"
 
 # github release
 release: build
