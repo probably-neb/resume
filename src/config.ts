@@ -1,6 +1,4 @@
 import { z } from "zod";
-import fs from "fs";
-import toml from "toml";
 
 const ContactInfoSchema = z.object({
     value: z.string(),
@@ -17,6 +15,7 @@ const ProjectSchema = z.object({
     dates: z.string().optional(),
     steps: z.array(z.string()).optional(),
     type: z.string().optional(),
+    url: z.string().optional(),
 });
 export type Project = z.infer<typeof ProjectSchema>;
 
@@ -27,7 +26,7 @@ const EducationSchema = z.object({
 });
 export type Education = z.infer<typeof EducationSchema>;
 
-const ConfigSchema = z.object({
+export const ConfigSchema = z.object({
     blurb: z.string(),
     languages: z.record(z.string(), z.string()),
     tools: z.record(z.string(), z.string()),
@@ -36,10 +35,3 @@ const ConfigSchema = z.object({
     calpoly: EducationSchema,
 });
 export type Config = z.infer<typeof ConfigSchema>;
-
-export const loadConfig = (): Config => {
-    let raw = fs.readFileSync("info.toml");
-    const config = toml.parse(raw.toString("utf-8"));
-    return ConfigSchema.parse(config);
-};
-

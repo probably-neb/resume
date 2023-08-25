@@ -3,12 +3,12 @@ import { renderToString, renderToStaticNodeStream } from "react-dom/server";
 import puppeteer from "puppeteer";
 import fs from "fs";
 import {
-    loadConfig,
     Config,
     ContactInfo,
     Education,
     Project,
 } from "./src/config";
+import config from "./resume.config";
 
 import util from "util";
 import stream from "stream";
@@ -83,7 +83,6 @@ async function saveHTML(element: ReactElement): Promise<void> {
 }
 
 async function generatePDF(): Promise<Buffer> {
-    const config = loadConfig();
     const resume = renderToString(<Resume config={config} />);
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -101,5 +100,5 @@ function savePDF(pdf: Buffer): void {
 
 Promise.all([
     generatePDF().then(savePDF),
-    saveHTML(<Resume config={loadConfig()} />),
+    saveHTML(<Resume config={config} />),
 ]);
