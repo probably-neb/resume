@@ -1,7 +1,7 @@
-BUILD_DIR := "./build"
+BUILD_DIR := "build"
 RESUME_PDF := BUILD_DIR / "resume.pdf"
 RESUME_HTML := BUILD_DIR / "resume.html"
-CONFIG := "resume.config.tsx"
+CONFIG := "resume.config.ts"
 
 default:
     @just --list
@@ -11,7 +11,7 @@ build:
 
 serve: build
     @just watch &
-    browser-sync start --server --index resume.html --files resume.html
+    browser-sync start --server --index {{RESUME_HTML}} --files {{RESUME_HTML}}
 
 watch:
 	ls {{CONFIG}} src/** | entr -s "just build"
