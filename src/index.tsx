@@ -51,10 +51,7 @@ const ContactInfoList: FC<{ infos: ContactInfo[] }> = ({ infos }) => {
     );
 };
 
-interface ResumeProps {
-    config: Config;
-}
-const Resume: FC<ResumeProps> = ({ config }) => {
+const Resume: FC<{config: Config}> = ({ config }) => {
     return (
         <html>
             <head>
@@ -78,9 +75,9 @@ const Resume: FC<ResumeProps> = ({ config }) => {
     );
 };
 
-export async function saveHTML(config: Config): Promise<void> {
+export async function saveHTML(config: Config, path: string): Promise<void> {
     let readable = renderToStaticNodeStream(<Resume config={config} />);
-    let writeable = fs.createWriteStream("resume.html");
+    let writeable = fs.createWriteStream(path);
     await asyncPipe(readable, writeable);
 }
 
@@ -94,8 +91,8 @@ export async function generatePDF(config: Config): Promise<Buffer> {
     return pdf;
 }
 
-export function savePDF(pdf: Buffer): void {
-    fs.writeFile("resume.pdf", pdf, (err) => {
+export function savePDF(pdf: Buffer, path: string): void {
+    fs.writeFile(path, pdf, (err) => {
         if (err) console.error(err);
     });
 }

@@ -1,20 +1,20 @@
-BUILD_DIR := "build"
-RESUME_PDF := "{{BUILD_DIR}}/resume.pdf"
-RESUME_HTML := "{{BUILD_DIR}}/resume.html"
+BUILD_DIR := "./build"
+RESUME_PDF := BUILD_DIR / "resume.pdf"
+RESUME_HTML := BUILD_DIR / "resume.html"
+CONFIG := "resume.config.tsx"
 
 default:
     @just --list
 
 build:
-    pnpx tsx main.ts
-    mv resume.html resume.pdf ./build/
+    pnpx tsx main.ts {{CONFIG}} --pdf={{RESUME_PDF}} --html={{RESUME_HTML}}
 
 serve: build
     @just watch &
     browser-sync start --server --index resume.html --files resume.html
 
 watch:
-	ls resume.config.ts resume.tsx | entr -s "just build"
+	ls {{CONFIG}} src/** | entr -s "just build"
 
 # preview
 preview: build
@@ -53,4 +53,3 @@ release: build
     read -r -p "Notes: " notes
 
     gh release create "$(date +%m-%d-%y)" --notes "${notes}" {{RESUME_PDF}}
-

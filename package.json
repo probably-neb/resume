@@ -3,6 +3,7 @@
 	"main": "resume.tsx",
 	"type": "module",
 	"dependencies": {
+		"cmd-ts": "^0.13.0",
 		"puppeteer": "^21.1.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
