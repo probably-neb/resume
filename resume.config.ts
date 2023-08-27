@@ -6,24 +6,21 @@ import { HiMail } from "react-icons/hi"
 
 const config: Config = ConfigSchema.parse({
     blurb: "Hi! I'm an asipiring Software Engineer that truly loves to program. I love languages, systems programming, and web development. I use any free time I have on personal projects through which I explore new tools, languages, and ideas.",
-    languages: {
-        Python: "",
-        Rust: "",
-        Typescript: "",
-        Html: "",
-        Java: "",
-        C: "",
-        Go: "",
-        Lua: "",
-    },
-    tools: {
-        vim: "",
-        Git: "",
-        Linux: "",
-        Vercel: "△",
-        NextJS: "△",
-    },
-
+    tools: [
+        { name: "vim", icon: "", kind: "tool" },
+        { name: "Git", icon: "", kind: "tool" },
+        { name: "Linux", icon: "", kind: "tool" },
+        { name: "Vercel", icon: "△", kind: "tool" },
+        { name: "NextJS", icon: "△", kind: "framework" },
+        { name: "Python", icon: "", kind: "language" },
+        { name: "Rust", icon: "", kind: "language" },
+        { name: "Typescript", icon: "", kind: "language" },
+        { name: "Html", icon: "", kind: "language" },
+        { name: "Java", icon: "", kind: "language" },
+        { name: "C", icon: "", kind: "language" },
+        { name: "Go", icon: "", kind: "language" },
+        { name: "Lua", icon: "", kind: "language" },
+    ],
     contacts: [
         {
             value: "(847) 848-8813",

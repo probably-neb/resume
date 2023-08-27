@@ -32,10 +32,18 @@ const EducationSchema = z.object({
 });
 export type Education = z.infer<typeof EducationSchema>;
 
+const ToolSchema = z.object({
+    name: z.string(),
+    kind: z.enum(["language", "framework", "library", "tool"]),
+    icon: z.custom<React.FunctionComponent>(),
+    include: z.boolean().optional(),
+})
+
+export type Tool = z.infer<typeof ToolSchema>;
+
 export const ConfigSchema = z.object({
     blurb: z.string(),
-    languages: z.record(z.string(), z.string()),
-    tools: z.record(z.string(), z.string()),
+    tools: z.array(ToolSchema),
     contacts: z.array(ContactInfoSchema),
     projects: z.array(ProjectSchema),
     calpoly: EducationSchema,
