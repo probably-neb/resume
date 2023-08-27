@@ -8,8 +8,7 @@ import {
     Education,
     Project,
     ReactElement,
-} from "./src/config";
-import config from "./resume.config";
+} from "./config";
 
 import util from "util";
 import stream from "stream";
@@ -79,13 +78,13 @@ const Resume: FC<ResumeProps> = ({ config }) => {
     );
 };
 
-async function saveHTML(element: ReactElement): Promise<void> {
-    let readable = renderToStaticNodeStream(element);
+export async function saveHTML(config: Config): Promise<void> {
+    let readable = renderToStaticNodeStream(<Resume config={config} />);
     let writeable = fs.createWriteStream("resume.html");
     await asyncPipe(readable, writeable);
 }
 
-async function generatePDF(): Promise<Buffer> {
+export async function generatePDF(config: Config): Promise<Buffer> {
     const resume = renderToString(<Resume config={config} />);
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -95,13 +94,8 @@ async function generatePDF(): Promise<Buffer> {
     return pdf;
 }
 
-function savePDF(pdf: Buffer): void {
+export function savePDF(pdf: Buffer): void {
     fs.writeFile("resume.pdf", pdf, (err) => {
         if (err) console.error(err);
     });
 }
-
-Promise.all([
-    generatePDF().then(savePDF),
-    saveHTML(<Resume config={config} />),
-]);

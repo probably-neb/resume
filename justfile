@@ -1,12 +1,12 @@
 BUILD_DIR := "build"
-RESUME_PDF := {{BUILD_DIR}} / resume.pdf
-RESUME_HTML := {{BUILD_DIR}} / resume.html
+RESUME_PDF := "{{BUILD_DIR}}/resume.pdf"
+RESUME_HTML := "{{BUILD_DIR}}/resume.html"
 
 default:
     @just --list
 
 build:
-	pnpx tsx resume.tsx
+    pnpx tsx main.ts
     mv resume.html resume.pdf ./build/
 
 serve: build
