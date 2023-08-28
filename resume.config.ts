@@ -66,6 +66,13 @@ const config: Config = ConfigSchema.parse({
     ],
     projects: [
         {
+            skills: ["Leadership", "Responsibility", "Accountability"],
+            name: "Camp Towering Pines For Boys",
+            type: "Camp Counselor",
+            dates: "Summers of 2021, 2022, and 2023",
+            short: "Six week overnight camp in Northern Wisconsin. I was personably responsible for a cabin of 10-15 boys aged 14-16 each summer.",
+        },
+        {
             name: "Millipyde",
             skills: ["Team Work", "Collaboration"],
             type: "Research Project",
@@ -77,6 +84,18 @@ const config: Config = ConfigSchema.parse({
             ],
         },
 
+        {
+            name: "Wave Function Collapse",
+            url: "https://wfc-tau.vercel.app",
+            type: "Personal Project",
+            short: "Implementation of Wave Function Collapse, the constraint based bitmap generation algorithm created by Maxim Gumin.",
+            skills: ["Algorithms", "Prototyping", "Haskell", "Rust"],
+            steps: [
+                "Implemented algorithm in Haskell, as well as Rust.",
+                "Extended the original algorithm to process wang tiles.",
+                "Compiled the Rust implementation to WASM and built a web viewer for the project using SolidJS",
+            ],
+        },
         {
             name: "Ant Simulation",
             type: "Personal Project",
@@ -95,27 +114,6 @@ const config: Config = ConfigSchema.parse({
                 "Created a comprehensive report documenting the research and design process, including a live demonstration of the program using WebAssembly.",
             ],
         },
-
-        {
-            name: "Wave Function Collapse",
-            url: "https://wfc-tau.vercel.app",
-            type: "Personal Project",
-            short: "Implementation of Wave Function Collapse, the constraint based bitmap generation algorithm created by Maxim Gumin.",
-            skills: ["Algorithms", "Prototyping", "Haskell", "Rust"],
-            steps: [
-                "Implemented algorithm in Haskell, as well as Rust.",
-                "Extended the original algorithm to process wang tiles.",
-                "Compiled the Rust implementation to WASM and built a web viewer for the project using SolidJS",
-            ],
-        },
-        {
-            skills: ["Leadership", "Responsibility", "Accountability"],
-            name: "Camp Towering Pines For Boys",
-            type: "Camp Counselor",
-            dates: "Summers of 2021, 2022, and 2023",
-            short: "Six week overnight camp in Northern Wisconsin. I was personably responsible for a cabin of 10-15 boys aged 14-16 each summer.",
-        },
-
         {
             name: "Smaller Projects",
             type: "Personal Projects",
