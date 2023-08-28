@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { ContactInfo, ReactElement } from "./config";
 import { Icon } from "./utils";
 
-const ContactInfo: FC<{ info: ContactInfo }> = ({ info }) => {
+export const ContactItem: FC<{ info: ContactInfo }> = ({ info }) => {
     let txt: ReactElement | string = info.value;
     if (info.href) {
         txt = (
@@ -20,14 +20,12 @@ const ContactInfo: FC<{ info: ContactInfo }> = ({ info }) => {
     );
 };
 
-const ContactInfoList: FC<{ infos: ContactInfo[] }> = ({ infos }) => {
+export const ContactInfoList: FC<{ infos: ContactInfo[] }> = ({ infos }) => {
     return (
         <div className="flex flex-row justify-between">
             {infos.map((info) => (
-                <ContactInfo info={info} key={info.value} />
+                <ContactItem info={info} key={info.value} />
             ))}
         </div>
     );
 };
-
-export default ContactInfoList;

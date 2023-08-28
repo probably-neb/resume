@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Project } from "./config";
 import { Buffer } from "./utils";
 
-const ProjectItem: FC<{ project: Project }> = ({ project }) => {
+export const ProjectItem: FC<{ project: Project }> = ({ project }) => {
     return (
         <div>
             <div className="flex flex-row">
@@ -31,7 +31,7 @@ const ProjectItem: FC<{ project: Project }> = ({ project }) => {
     );
 };
 
-const ProjectList: FC<{ projects: Project[] }> = ({ projects }) => {
+export const ProjectList: FC<{ projects: Project[] }> = ({ projects }) => {
     return (
         <div>
             {projects
@@ -42,5 +42,3 @@ const ProjectList: FC<{ projects: Project[] }> = ({ projects }) => {
         </div>
     );
 };
-
-export default ProjectList;

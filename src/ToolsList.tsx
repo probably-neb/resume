@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Tool } from "./config";
 import { FCNode, Buffer } from "./utils";
 
-const ToolItem: FC<{ tool: Tool }> = ({ tool }) => {
+export const ToolItem: FC<{ tool: Tool }> = ({ tool }) => {
     return (
         <div className="flex flex-row justify-center items-center">
             <FCNode node={tool.icon} /><Buffer width="2px"/>{tool.name}
@@ -11,9 +11,10 @@ const ToolItem: FC<{ tool: Tool }> = ({ tool }) => {
 };
 
 interface ToolsListProps {
-    tools: Tool[];
+    tools: ToolType[];
 }
-export default function ToolsList({ tools }: ToolsListProps) {
+
+export function ToolsList({ tools }: ToolsListProps) {
     return (
             <div className="flex flex-row">
             <div className="flex-shrink">
