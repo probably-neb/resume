@@ -19,7 +19,7 @@ export type ContactInfo = z.infer<typeof ContactInfoSchema>;
 const ProjectSchema = z.object({
     name: z.string(),
     short: z.string(),
-    include: z.boolean().optional(),
+    exclude: z.boolean().optional(),
     skills: z.array(z.string()).optional(),
     dates: z.string().optional(),
     steps: z.array(z.string()).optional(),
@@ -33,7 +33,7 @@ const ToolSchema = z.object({
     name: z.string(),
     kind: z.enum(["language", "framework", "library", "tool"]),
     icon: IconSchema,
-    include: z.boolean().optional(),
+    exclude: z.boolean().optional(),
 })
 export type Tool = z.infer<typeof ToolSchema>;
 

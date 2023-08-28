@@ -31,7 +31,7 @@ const config: Config = ConfigSchema.parse({
         { name: "Java", icon: DiJava, kind: "language" },
         { name: "C", icon: SiCmake, kind: "language" },
         { name: "Go", icon: SiGo, kind: "language" },
-        { name: "Lua", icon: SiLua, kind: "language", include: false },
+        { name: "Lua", icon: SiLua, kind: "language", exclude: true },
         { name: "TailwindCSS", icon: SiTailwindcss, kind: "framework" },
     ],
     contacts: [
@@ -121,7 +121,7 @@ const config: Config = ConfigSchema.parse({
             type: "Personal Projects",
             skills: ["Solving Problems", "Exploring/Experimenting"],
             short: "I love working and playing with computers and look for excuses to do both",
-            include: false,
+            exclude: true,
             steps: [
                 "Created Goclone, a cli tool that uses rclone for backing up files to Dropbox to save battery.",
                 "Developed a resume generation system using TOML, LaTeX, and Jinja2 to separate formatting and content, allowing for quick iteration, fine-grained control, and versioning.",
