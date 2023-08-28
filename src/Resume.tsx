@@ -5,6 +5,7 @@ import { ProjectItem, ProjectList } from "./Projects";
 import { ToolItem } from "./ToolsList";
 import Blurb from "./Blurb";
 import { Config, Tool } from "./config";
+import Education from "./Education";
 import theme from "./theme";
 
 const LeftColSection: FC<{ children: React.ReactNode; title: string }> = ({
@@ -37,7 +38,9 @@ const Resume: FC<{ config: Config }> = ({ config }) => {
             >
                 <div className="flex flex-row justify-between pb-2">
                     <div className="grow flex-none">
-                        <div className={ `flex flex-col justify-center mb-2 text-${theme.accent.tw}`}>
+                        <div
+                            className={`flex flex-col justify-center mb-2 text-${theme.accent.tw}`}
+                        >
                             <p className="text-4xl">Ben Kunkle</p>
                             <p className="text-xl">Aspiring Developer</p>
                         </div>
@@ -54,30 +57,18 @@ const Resume: FC<{ config: Config }> = ({ config }) => {
                                 <ContactItem
                                     info={contact}
                                     key={contact.value}
+                                    dir="right"
                                 />
                             ))}
                         </LeftColSection>
                         <LeftColSection title="Skills">
                             {config.tools.map((tool) => (
-                                <ToolItem tool={tool} key={tool.name} />
+                                <ToolItem tool={tool} key={tool.name} dir="right"/>
                             ))}
                         </LeftColSection>
                         <LeftColSection title="Education">
                             {config.education.map((edu) => (
-                                <div
-                                    key={edu.name.short}
-                                    className="flex flex-col items-end"
-                                >
-                                    <p>{edu.qualification}</p>
-                                    <p className="text-sm">{edu.name.short}</p>
-                                    <div className="flex flex-row text-xs">
-                                        <p className="flex-none">
-                                            {edu.location}
-                                        </p>
-                                        <p>|</p>
-                                        <p className="flex-none">{edu.years}</p>
-                                    </div>
-                                </div>
+                                <Education edu={edu} key={edu.name.short} />
                             ))}
                         </LeftColSection>
                     </div>
