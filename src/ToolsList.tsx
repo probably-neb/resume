@@ -1,12 +1,17 @@
 import React, { FC } from "react";
 import { Tool } from "./config";
-import { FCNode, Buffer, Icon } from "./utils";
+import { Buffer, Icon, LRDir, LR } from "./utils";
 import theme from "./theme";
 
-export const ToolItem: FC<{ tool: Tool }> = ({ tool }) => {
+interface ToolItemProps {
+    tool: Tool;
+    dir?: LRDir;
+}
+export const ToolItem: FC<ToolItemProps> = ({ tool, dir }) => {
+    dir = dir || "left";
     return (
         <div className="flex flex-row justify-center items-center">
-            <Icon icon={tool.icon} color={theme.accent.hex}/><Buffer width="2px"/>{tool.name}
+            <LR dir={dir} left={<Icon icon={tool.icon} color={theme.accent.hex} />} right={<p>{tool.name}</p>} middle={<Buffer width="2px" />} />
         </div>
     );
 };

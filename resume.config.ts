@@ -1,11 +1,10 @@
 import { Config, ConfigSchema } from "./src/config";
-import { DiGithub, DiHtml5, DiJava, DiLinux } from "react-icons/di";
+import { DiGithub, DiHtml5, DiJava, DiLinux, DiGo } from "react-icons/di";
 import { BsGlobe } from "react-icons/bs";
 import { AiFillGithub, AiFillLinkedin, AiFillPhone } from "react-icons/ai";
 import { HiMail } from "react-icons/hi";
 import {
-    SiCmake,
-    SiGo,
+    SiC,
     SiLua,
     SiNextdotjs,
     SiPython,
@@ -15,11 +14,12 @@ import {
     SiVercel,
     SiVim,
 } from "react-icons/si";
+import C from "assets/C"
 
 const config: Config = ConfigSchema.parse({
     blurb: "Hi! I'm an asipiring Software Engineer that truly loves to program. I have a keen interest in languages, systems programming, and web development. I use any free time I have on personal projects through which I explore new tools, languages, and ideas.",
     tools: [
-        { name: "vim", icon: SiVim, kind: "tool" },
+        { name: "Vim", icon: SiVim, kind: "tool" },
         { name: "Git", icon: AiFillGithub, kind: "tool" },
         { name: "Linux", icon: DiLinux, kind: "tool" },
         { name: "Vercel", icon: SiVercel, kind: "tool" },
@@ -29,8 +29,8 @@ const config: Config = ConfigSchema.parse({
         { name: "Typescript", icon: SiTypescript, kind: "language" },
         { name: "Html", icon: DiHtml5, kind: "language" },
         { name: "Java", icon: DiJava, kind: "language" },
-        { name: "C", icon: SiCmake, kind: "language" },
-        { name: "Go", icon: SiGo, kind: "language" },
+        { name: "C", icon: C, kind: "language" },
+        { name: "Go", icon: DiGo, kind: "language" },
         { name: "Lua", icon: SiLua, kind: "language", exclude: true },
         { name: "TailwindCSS", icon: SiTailwindcss, kind: "framework" },
     ],
@@ -142,10 +142,7 @@ const config: Config = ConfigSchema.parse({
                 "Data Structures",
                 "Computer Architecture",
                 "Systems Programming",
-                "Algorithms",
-                "Proj-Based Obj-Oriented Programming and Design",
                 "Programming Languages",
-                "Theory of Computation",
             ],
             completed: [
                 "Data Structures",
