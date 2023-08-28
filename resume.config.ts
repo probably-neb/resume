@@ -10,6 +10,7 @@ import {
     SiNextdotjs,
     SiPython,
     SiRust,
+    SiTailwindcss,
     SiTypescript,
     SiVercel,
     SiVim,
@@ -30,7 +31,8 @@ const config: Config = ConfigSchema.parse({
         { name: "Java", icon: DiJava, kind: "language" },
         { name: "C", icon: SiCmake, kind: "language" },
         { name: "Go", icon: SiGo, kind: "language" },
-        { name: "Lua", icon: SiLua, kind: "language" },
+        { name: "Lua", icon: SiLua, kind: "language", include: false },
+        { name: "TailwindCSS", icon: SiTailwindcss, kind: "framework" },
     ],
     contacts: [
         {
