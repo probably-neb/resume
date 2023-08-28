@@ -33,9 +33,9 @@ export const ProjectItem: FC<{ project: Project }> = ({ project }) => {
 
 export const ProjectList: FC<{ projects: Project[] }> = ({ projects }) => {
     return (
-        <div className="flex flex-col justify-between">
+        <div className="flex-grow flex flex-col justify-around">
             {projects
-                .filter((p) => p.include)
+                .filter((p) => !p.exclude)
                 .map((project) => (
                     <ProjectItem project={project} key={project.name} />
                 ))}

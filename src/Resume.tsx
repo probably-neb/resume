@@ -5,6 +5,7 @@ import { ProjectItem, ProjectList } from "./Projects";
 import { ToolItem } from "./ToolsList";
 import Blurb from "./Blurb";
 import { Config, Tool } from "./config";
+import theme from "./theme";
 
 const LeftColSection: FC<{ children: React.ReactNode; title: string }> = ({
     children,
@@ -12,7 +13,7 @@ const LeftColSection: FC<{ children: React.ReactNode; title: string }> = ({
 }) => {
     return (
         <div className="flex flex-col items-end">
-            <div className="text-lg text-rose-800">
+            <div className={`text-lg text-${theme.accent.tw}`}>
                 <u>
                     <b>{title}</b>
                 </u>
@@ -36,7 +37,7 @@ const Resume: FC<{ config: Config }> = ({ config }) => {
             >
                 <div className="flex flex-row justify-between pb-2">
                     <div className="grow flex-none">
-                        <div className="flex flex-col justify-center mb-2 text-rose-800">
+                        <div className={ `flex flex-col justify-center mb-2 text-${theme.accent.tw}`}>
                             <p className="text-4xl">Ben Kunkle</p>
                             <p className="text-xl">Aspiring Developer</p>
                         </div>

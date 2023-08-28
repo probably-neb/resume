@@ -1,17 +1,18 @@
 import React, { FC } from "react";
 import { Tool } from "./config";
-import { FCNode, Buffer } from "./utils";
+import { FCNode, Buffer, Icon } from "./utils";
+import theme from "./theme";
 
 export const ToolItem: FC<{ tool: Tool }> = ({ tool }) => {
     return (
         <div className="flex flex-row justify-center items-center">
-            <FCNode node={tool.icon} /><Buffer width="2px"/>{tool.name}
+            <Icon icon={tool.icon} color={theme.accent.hex}/><Buffer width="2px"/>{tool.name}
         </div>
     );
 };
 
 interface ToolsListProps {
-    tools: ToolType[];
+    tools: Tool[];
 }
 
 export function ToolsList({ tools }: ToolsListProps) {
