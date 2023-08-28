@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Divider from "./Divider";
 import { ContactItem } from "./Contacts";
 import { ProjectItem, ProjectList } from "./Projects";
-import { ToolItem } from "./ToolsList";
+import { ToolsList2Col } from "./ToolsList";
 import Blurb from "./Blurb";
 import { Config, Tool } from "./config";
 import Education from "./Education";
@@ -62,9 +62,7 @@ const Resume: FC<{ config: Config }> = ({ config }) => {
                             ))}
                         </LeftColSection>
                         <LeftColSection title="Skills">
-                            {config.tools.map((tool) => (
-                                <ToolItem tool={tool} key={tool.name} dir="right"/>
-                            ))}
+                            <ToolsList2Col tools={config.tools} dir="right" />
                         </LeftColSection>
                         <LeftColSection title="Education">
                             {config.education.map((edu) => (
