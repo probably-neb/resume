@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import Divider from "./Divider";
 import { ContactItem } from "./Contacts";
-import { ProjectList } from "./Projects";
+import { ProjectItem, ProjectList } from "./Projects";
 import { ToolItem } from "./ToolsList";
 import Blurb from "./Blurb";
-import { Config } from "./config";
+import { Config, Tool } from "./config";
 
 const LeftColSection: FC<{ children: React.ReactNode; title: string }> = ({
     children,
@@ -12,8 +12,10 @@ const LeftColSection: FC<{ children: React.ReactNode; title: string }> = ({
 }) => {
     return (
         <div className="flex flex-col items-end">
-            <div className="text-lg">
-                <u>{title}</u>
+            <div className="text-lg text-rose-800">
+                <u>
+                    <b>{title}</b>
+                </u>
             </div>
             {children}
         </div>
@@ -28,15 +30,13 @@ const Resume: FC<{ config: Config }> = ({ config }) => {
             </head>
             <body
                 style={{
-                    width: "8.5in",
-                    height: "11in",
                     printColorAdjust: "exact",
                 }}
-                className="p-[0.25in] bg-white"
+                className="w-[8.5in] h-[11in] p-[0.25in] bg-white flex flex-col"
             >
                 <div className="flex flex-row justify-between pb-2">
                     <div className="grow flex-none">
-                        <div className="flex flex-col justify-center mb-2">
+                        <div className="flex flex-col justify-center mb-2 text-rose-800">
                             <p className="text-4xl">Ben Kunkle</p>
                             <p className="text-xl">Aspiring Developer</p>
                         </div>
@@ -46,7 +46,7 @@ const Resume: FC<{ config: Config }> = ({ config }) => {
                         <Blurb blurb={config.blurb} />
                     </div>
                 </div>
-                <div className="flex flex-row">
+                <div className="flex-grow flex flex-row">
                     <div id="left" className="flex flex-col justify-around">
                         <LeftColSection title="Contact">
                             {config.contacts.map((contact) => (
@@ -62,16 +62,38 @@ const Resume: FC<{ config: Config }> = ({ config }) => {
                             ))}
                         </LeftColSection>
                         <LeftColSection title="Education">
-                            Cal Poly San Luis Obispo 2021-present
+                            {config.education.map((edu) => (
+                                <div
+                                    key={edu.name.short}
+                                    className="flex flex-col items-end"
+                                >
+                                    <p>{edu.qualification}</p>
+                                    <p className="text-sm">{edu.name.short}</p>
+                                    <div className="flex flex-row text-xs">
+                                        <p className="flex-none">
+                                            {edu.location}
+                                        </p>
+                                        <p>|</p>
+                                        <p className="flex-none">{edu.years}</p>
+                                    </div>
+                                </div>
+                            ))}
                         </LeftColSection>
                     </div>
                     <Divider
-                        color="rose-400"
+                        color="rose-800"
                         orientation="vertical"
                         className="mx-4"
                     />
-                    <div id="right">
-                        <ProjectList projects={config.projects} />
+                    <div id="right" className="flex flex-col justify-around">
+                        {config.projects
+                            .filter((p) => !p.exclude)
+                            .map((project) => (
+                                <ProjectItem
+                                    project={project}
+                                    key={project.name}
+                                />
+                            ))}
                     </div>
                 </div>
             </body>
