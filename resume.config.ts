@@ -1,25 +1,36 @@
-import { Config, ConfigSchema} from "./src/config";
-import { DiGithub } from "react-icons/di"
-import { BsGlobe } from "react-icons/bs"
-import { AiFillLinkedin, AiFillPhone } from "react-icons/ai"
-import { HiMail } from "react-icons/hi"
+import { Config, ConfigSchema } from "./src/config";
+import { DiGithub, DiHtml5, DiJava, DiLinux } from "react-icons/di";
+import { BsGlobe } from "react-icons/bs";
+import { AiFillGithub, AiFillLinkedin, AiFillPhone } from "react-icons/ai";
+import { HiMail } from "react-icons/hi";
+import {
+    SiCmake,
+    SiGo,
+    SiLua,
+    SiNextdotjs,
+    SiPython,
+    SiRust,
+    SiTypescript,
+    SiVercel,
+    SiVim,
+} from "react-icons/si";
 
 const config: Config = ConfigSchema.parse({
     blurb: "Hi! I'm an asipiring Software Engineer that truly loves to program. I love languages, systems programming, and web development. I use any free time I have on personal projects through which I explore new tools, languages, and ideas.",
     tools: [
-        { name: "vim", icon: "", kind: "tool" },
-        { name: "Git", icon: "", kind: "tool" },
-        { name: "Linux", icon: "", kind: "tool" },
-        { name: "Vercel", icon: "△", kind: "tool" },
-        { name: "NextJS", icon: "△", kind: "framework" },
-        { name: "Python", icon: "", kind: "language" },
-        { name: "Rust", icon: "", kind: "language" },
-        { name: "Typescript", icon: "", kind: "language" },
-        { name: "Html", icon: "", kind: "language" },
-        { name: "Java", icon: "", kind: "language" },
-        { name: "C", icon: "", kind: "language" },
-        { name: "Go", icon: "", kind: "language" },
-        { name: "Lua", icon: "", kind: "language" },
+        { name: "vim", icon: SiVim, kind: "tool" },
+        { name: "Git", icon: AiFillGithub, kind: "tool" },
+        { name: "Linux", icon: DiLinux, kind: "tool" },
+        { name: "Vercel", icon: SiVercel, kind: "tool" },
+        { name: "NextJS", icon: SiNextdotjs, kind: "framework" },
+        { name: "Python", icon: SiPython, kind: "language" },
+        { name: "Rust", icon: SiRust, kind: "language" },
+        { name: "Typescript", icon: SiTypescript, kind: "language" },
+        { name: "Html", icon: DiHtml5, kind: "language" },
+        { name: "Java", icon: DiJava, kind: "language" },
+        { name: "C", icon: SiCmake, kind: "language" },
+        { name: "Go", icon: SiGo, kind: "language" },
+        { name: "Lua", icon: SiLua, kind: "language" },
     ],
     contacts: [
         {
@@ -58,14 +69,18 @@ const config: Config = ConfigSchema.parse({
             skills: ["Team Work", "Collaboration"],
             type: "Research Project",
             url: "https://digitalcommons.calpoly.edu/theses/2374/",
-            short: "Worked with a partner to develop benchmarks for Millipyde, a library that uses AMD ROCm to add GPU-backed arrays to python. Compared the benchmarks against similar tools CuPy and OpenCV-cuda",
+            short: "Benchmarks of a GPU-backed array library for python",
+            steps: [
+                "Worked with a partner to develop benchmarks for Millipyde, a library that uses AMD ROCm to add GPU-backed arrays to python.",
+                "Compared the benchmarks against similar tools CuPy and OpenCV-cuda",
+            ],
         },
 
         {
             name: "Ant Simulation",
             type: "Personal Project",
             url: "https://nebsite.website/modules/ant-sim/index.html",
-            short: "Simulating date retreival in peer-to-peer (P2P) networks with a system inspired by ants",
+            short: "Simulating data retreival in peer-to-peer (P2P) networks with a system inspired by ants",
             skills: [
                 "Algorithms",
                 "Rust",

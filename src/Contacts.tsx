@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { ContactInfo, ReactElement } from "./config"
+import { ContactInfo, ReactElement } from "./config";
+import { Icon } from "./utils";
 
 const ContactInfo: FC<{ info: ContactInfo }> = ({ info }) => {
     let txt: ReactElement | string = info.value;
@@ -10,10 +11,9 @@ const ContactInfo: FC<{ info: ContactInfo }> = ({ info }) => {
             </a>
         );
     }
-    const Icon = info.icon;
     return (
         <div className="flex flex-row justify-center items-center">
-            <Icon />
+            <Icon icon={info.icon} />
             <div className="w-[4px]"></div>
             <p className="text-sm">{txt}</p>
         </div>

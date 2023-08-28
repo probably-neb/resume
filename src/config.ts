@@ -1,6 +1,9 @@
-import { z } from "zod";
-
 import React from "react";
+import { z } from "zod";
+import { IconType } from "react-icons";
+const IconSchema = z.custom<IconType>();
+
+
 export type ReactElement = React.ReactElement<
     any,
     string | React.JSXElementConstructor<any>
@@ -8,7 +11,7 @@ export type ReactElement = React.ReactElement<
 
 const ContactInfoSchema = z.object({
     value: z.string(),
-    icon: z.custom<React.FunctionComponent>(),
+    icon: IconSchema,
     href: z.string().url().optional(),
 });
 export type ContactInfo = z.infer<typeof ContactInfoSchema>;
@@ -35,10 +38,9 @@ export type Education = z.infer<typeof EducationSchema>;
 const ToolSchema = z.object({
     name: z.string(),
     kind: z.enum(["language", "framework", "library", "tool"]),
-    icon: z.custom<React.FunctionComponent>(),
+    icon: IconSchema,
     include: z.boolean().optional(),
 })
-
 export type Tool = z.infer<typeof ToolSchema>;
 
 export const ConfigSchema = z.object({
@@ -49,5 +51,3 @@ export const ConfigSchema = z.object({
     calpoly: EducationSchema,
 });
 export type Config = z.infer<typeof ConfigSchema>;
-
-

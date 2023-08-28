@@ -19,7 +19,6 @@ const cmd = command({
     },
     handler: async ({ config_path, pdf_path, html_path }) => {
         let { default: config } = await import(config_path);
-        console.dir(config, { depth: null });
         let jobs = [];
         if (pdf_path) {
             console.log("saving pdf to ", pdf_path);
