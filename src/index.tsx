@@ -24,7 +24,7 @@ export async function saveHTML(config: Config, path: string): Promise<void> {
 
 export async function generatePDF(config: Config): Promise<Buffer> {
     const resume = renderToString(<Resume config={config} />);
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({headless: "new"})
     const page = await browser.newPage();
     await page.setContent(resume);
     const pdf = await page.pdf({ format: "letter" });
