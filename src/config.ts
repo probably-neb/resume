@@ -19,7 +19,7 @@ export type ContactInfo = z.infer<typeof ContactInfoSchema>;
 const ProjectSchema = z.object({
     name: z.string(),
     short: z.string(),
-    exclude: z.boolean().optional(),
+    include: z.boolean().optional(),
     skills: z.array(z.string()).optional(),
     dates: z.string().optional(),
     steps: z.array(z.string()).optional(),
@@ -28,12 +28,6 @@ const ProjectSchema = z.object({
 });
 export type Project = z.infer<typeof ProjectSchema>;
 
-const EducationSchema = z.object({
-    notable_completed: z.array(z.string()),
-    completed: z.array(z.string()),
-    current: z.array(z.string()),
-});
-export type Education = z.infer<typeof EducationSchema>;
 
 const ToolSchema = z.object({
     name: z.string(),
@@ -43,11 +37,26 @@ const ToolSchema = z.object({
 })
 export type Tool = z.infer<typeof ToolSchema>;
 
+const EducationSchema = z.object({
+    name: z.object({
+        short: z.string(),
+        long: z.string(),
+    }),
+    kind: z.string(),
+    location: z.string(),
+    years: z.string(),
+    qualification: z.string(),
+    notable_completed: z.array(z.string()),
+    completed: z.array(z.string()),
+    current: z.array(z.string()),
+});
+export type Education = z.infer<typeof EducationSchema>;
+
 export const ConfigSchema = z.object({
     blurb: z.string(),
     tools: z.array(ToolSchema),
     contacts: z.array(ContactInfoSchema),
     projects: z.array(ProjectSchema),
-    calpoly: EducationSchema,
+    education: z.array(EducationSchema),
 });
 export type Config = z.infer<typeof ConfigSchema>;

@@ -17,7 +17,7 @@ import {
 } from "react-icons/si";
 
 const config: Config = ConfigSchema.parse({
-    blurb: "Hi! I'm an asipiring Software Engineer that truly loves to program. I love languages, systems programming, and web development. I use any free time I have on personal projects through which I explore new tools, languages, and ideas.",
+    blurb: "Hi! I'm an asipiring Software Engineer that truly loves to program. I have a keen interest in languages, systems programming, and web development. I use any free time I have on personal projects through which I explore new tools, languages, and ideas.",
     tools: [
         { name: "vim", icon: SiVim, kind: "tool" },
         { name: "Git", icon: AiFillGithub, kind: "tool" },
@@ -67,7 +67,6 @@ const config: Config = ConfigSchema.parse({
     projects: [
         {
             name: "Millipyde",
-            exclude: false,
             skills: ["Team Work", "Collaboration"],
             type: "Research Project",
             url: "https://digitalcommons.calpoly.edu/theses/2374/",
@@ -122,6 +121,7 @@ const config: Config = ConfigSchema.parse({
             type: "Personal Projects",
             skills: ["Solving Problems", "Exploring/Experimenting"],
             short: "I love working and playing with computers and look for excuses to do both",
+            include: false,
             steps: [
                 "Created Goclone, a cli tool that uses rclone for backing up files to Dropbox to save battery.",
                 "Developed a resume generation system using TOML, LaTeX, and Jinja2 to separate formatting and content, allowing for quick iteration, fine-grained control, and versioning.",
@@ -130,32 +130,42 @@ const config: Config = ConfigSchema.parse({
         },
     ],
 
-    calpoly: {
-        notable_completed: [
-            "Data Structures",
-            "Computer Architecture",
-            "Systems Programming",
-            "Algorithms",
-            "Proj-Based Obj-Oriented Programming and Design",
-            "Programming Languages",
-            "Theory of Computation",
-        ],
-        completed: [
-            "Data Structures",
-            "Proj-Based Obj-Oriented Programming and Design",
-            "Computer Architecture",
-            "Systems Programming",
-            "Introduction to Computer Organization",
-            "Discrete Structures",
-            "Design and Analysis of Algorithms",
-        ],
-        current: [
-            "Intro to Computer Security",
-            "Knowledge Discovery from Data",
-            "Graph Theory",
-            "Intro to Hardware Security",
-        ],
-    },
+    education: [
+        {
+            name: {
+                short: "Cal Poly",
+                long: "California Polytechnic State University",
+            },
+            kind: "University",
+            location: "San Luis Obispo",
+            qualification: "B.S. Computer Science",
+            years: "2021 - Present",
+            notable_completed: [
+                "Data Structures",
+                "Computer Architecture",
+                "Systems Programming",
+                "Algorithms",
+                "Proj-Based Obj-Oriented Programming and Design",
+                "Programming Languages",
+                "Theory of Computation",
+            ],
+            completed: [
+                "Data Structures",
+                "Proj-Based Obj-Oriented Programming and Design",
+                "Computer Architecture",
+                "Systems Programming",
+                "Introduction to Computer Organization",
+                "Discrete Structures",
+                "Design and Analysis of Algorithms",
+            ],
+            current: [
+                "Intro to Computer Security",
+                "Knowledge Discovery from Data",
+                "Graph Theory",
+                "Intro to Hardware Security",
+            ],
+        },
+    ],
 });
 
 export default config;

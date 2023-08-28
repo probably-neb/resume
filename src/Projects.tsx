@@ -6,7 +6,7 @@ export const ProjectItem: FC<{ project: Project }> = ({ project }) => {
     return (
         <div>
             <div className="flex flex-row">
-                <p>
+                <p className="text-rose-800">
                     <b>{project.name}</b>
                 </p>
                 <Buffer width="4px" />
@@ -33,9 +33,9 @@ export const ProjectItem: FC<{ project: Project }> = ({ project }) => {
 
 export const ProjectList: FC<{ projects: Project[] }> = ({ projects }) => {
     return (
-        <div>
+        <div className="flex flex-col justify-between">
             {projects
-                .filter((p) => !p.exclude)
+                .filter((p) => p.include)
                 .map((project) => (
                     <ProjectItem project={project} key={project.name} />
                 ))}
