@@ -1,14 +1,26 @@
 import React, { FC } from "react";
 import Divider from "./Divider";
-import ContactInfoList from "./Contacts";
-import ProjectList from "./Projects";
-import ToolsList from "./ToolsList";
+import { ContactItem } from "./Contacts";
+import { ProjectList } from "./Projects";
+import { ToolItem } from "./ToolsList";
 import Blurb from "./Blurb";
 import { Config } from "./config";
 
+const LeftColSection: FC<{ children: React.ReactNode; title: string }> = ({
+    children,
+    title,
+}) => {
+    return (
+        <div className="flex flex-col items-end">
+            <div className="text-lg">
+                <u>{title}</u>
+            </div>
+            {children}
+        </div>
+    );
+};
+
 const Resume: FC<{ config: Config }> = ({ config }) => {
-    const half= "4.25in";
-    const quarter = "2.125in";
     return (
         <html className="bg-slate-700">
             <head>
@@ -22,18 +34,46 @@ const Resume: FC<{ config: Config }> = ({ config }) => {
                 }}
                 className="p-[0.25in] bg-white"
             >
-                <div className="flex justify-center">
-                    <p className="text-4xl">Ben Kunkle</p>
-                </div>
-                <ContactInfoList infos={config.contacts} />
-                <div className="flex flex-col">
-                    <div className="my-3">
-                    <Blurb blurb={config.blurb} />
+                <div className="flex flex-row justify-between pb-2">
+                    <div className="grow flex-none">
+                        <div className="flex flex-col justify-center mb-2">
+                            <p className="text-4xl">Ben Kunkle</p>
+                            <p className="text-xl">Aspiring Developer</p>
+                        </div>
                     </div>
-                    <ToolsList tools={config.tools} />
+                    <div className="w-1/12"></div>
+                    <div className="shrink">
+                        <Blurb blurb={config.blurb} />
+                    </div>
                 </div>
-                <Divider orientation="horizontal" lineStyle="solid" />
-                <ProjectList projects={config.projects} />
+                <div className="flex flex-row">
+                    <div id="left" className="flex flex-col justify-around">
+                        <LeftColSection title="Contact">
+                            {config.contacts.map((contact) => (
+                                <ContactItem
+                                    info={contact}
+                                    key={contact.value}
+                                />
+                            ))}
+                        </LeftColSection>
+                        <LeftColSection title="Skills">
+                            {config.tools.map((tool) => (
+                                <ToolItem tool={tool} key={tool.name} />
+                            ))}
+                        </LeftColSection>
+                        <LeftColSection title="Education">
+                            Cal Poly San Luis Obispo 2021-present
+                        </LeftColSection>
+                    </div>
+                    <Divider
+                        color="rose-400"
+                        orientation="vertical"
+                        className="mx-4"
+                    />
+                    <div id="right">
+                        <ProjectList projects={config.projects} />
+                    </div>
+                </div>
             </body>
         </html>
     );
