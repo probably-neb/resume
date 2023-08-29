@@ -45,3 +45,14 @@ export const LR: FC<LRProps> = ({dir, left, right, middle}) => {
         {dir === "left" ? right : left}
     </>;
 }
+
+export const capitalize = {
+    first(s: string) {
+        if (!s) return s;
+        return s[0].toUpperCase() + s.slice(1);
+    },
+    title(this, s: string) {
+        if (!s) return s;
+        return s.split(" ").map(this.first).join(" ");
+    }
+}

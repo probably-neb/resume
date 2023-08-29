@@ -1,10 +1,10 @@
 import { Config, ConfigSchema } from "./src/config";
-import { DiGithub, DiHtml5, DiJava, DiLinux, DiGo } from "react-icons/di";
+import { DiHtml5, DiJava, DiLinux } from "react-icons/di";
 import { BsGlobe } from "react-icons/bs";
 import { AiFillGithub, AiFillLinkedin, AiFillPhone } from "react-icons/ai";
 import { HiMail } from "react-icons/hi";
 import {
-    SiC,
+    SiGo,
     SiLua,
     SiNextdotjs,
     SiPython,
@@ -14,10 +14,11 @@ import {
     SiVercel,
     SiVim,
 } from "react-icons/si";
-import C from "assets/C"
+import { LiaJava } from "react-icons/lia";
+import C from "assets/C";
 
 const config: Config = ConfigSchema.parse({
-    blurb: "Hi! I'm an asipiring Software Engineer that truly loves to program. I have a keen interest in languages, systems programming, and web development. I use any free time I have on personal projects through which I explore new tools, languages, and ideas.",
+    blurb: "Hi! I'm an aspiring Software Engineer that truly loves to program. I have a keen interest in languages, systems programming, and web development. I use any free time I have on personal projects through which I explore new tools, languages, and ideas.",
     tools: [
         { name: "Vim", icon: SiVim, kind: "tool" },
         { name: "Git", icon: AiFillGithub, kind: "tool" },
@@ -28,10 +29,10 @@ const config: Config = ConfigSchema.parse({
         { name: "Rust", icon: SiRust, kind: "language" },
         { name: "Typescript", icon: SiTypescript, kind: "language" },
         { name: "Html", icon: DiHtml5, kind: "language" },
-        { name: "Java", icon: DiJava, kind: "language" },
+        { name: "Java", icon: LiaJava, kind: "language" },
         { name: "C", icon: C, kind: "language" },
-        { name: "Go", icon: DiGo, kind: "language" },
         { name: "Lua", icon: SiLua, kind: "language", exclude: true },
+        { name: "Go", icon: SiGo, kind: "language" },
         { name: "TailwindCSS", icon: SiTailwindcss, kind: "framework" },
     ],
     contacts: [
@@ -48,7 +49,7 @@ const config: Config = ConfigSchema.parse({
 
         {
             value: "probably-neb",
-            icon: DiGithub,
+            icon: AiFillGithub,
             href: "https://github.com/probably-neb",
         },
 
@@ -70,7 +71,11 @@ const config: Config = ConfigSchema.parse({
             name: "Camp Towering Pines For Boys",
             type: "Camp Counselor",
             dates: "Summers of 2021, 2022, and 2023",
-            short: "Six week overnight camp in Northern Wisconsin. I was personably responsible for a cabin of 10-15 boys aged 14-16 each summer.",
+            short: "Six week overnight camp in Northern Wisconsin.",
+            steps: [
+                "As a counselor, I was personably responsible for a cabin of 10-15 boys aged 14-16 each summer",
+                "Assumed a leadership role at the rifle and trap ranges range where I trained new counselors and taught campers gun safety, maintenence, and form",
+            ]
         },
         {
             name: "Millipyde",
@@ -92,7 +97,7 @@ const config: Config = ConfigSchema.parse({
             skills: ["Algorithms", "Prototyping", "Haskell", "Rust"],
             steps: [
                 "Implemented algorithm in Haskell, as well as Rust.",
-                "Extended the original algorithm to process wang tiles.",
+                "Extended the original algorithm to process Wang Tiles.",
                 "Compiled the Rust implementation to WASM and built a web viewer for the project using SolidJS",
             ],
         },
@@ -100,7 +105,7 @@ const config: Config = ConfigSchema.parse({
             name: "Ant Simulation",
             type: "Personal Project",
             url: "https://nebsite.website/modules/ant-sim/index.html",
-            short: "Simulating data retreival in peer-to-peer (P2P) networks with a system inspired by ants",
+            short: "Simulating data retreival in peer-to-peer (P2P) networks with a system inspired by ants.",
             skills: [
                 "Algorithms",
                 "Rust",
@@ -116,13 +121,13 @@ const config: Config = ConfigSchema.parse({
         },
         {
             name: "Smaller Projects",
-            type: "Personal Projects",
+            type: "",
             skills: ["Solving Problems", "Exploring/Experimenting"],
-            short: "I love working and playing with computers and look for excuses to do both",
-            exclude: true,
+            short: "I love working and playing with computers and look for excuses to do both.",
+            exclude: false,
             steps: [
                 "Created Goclone, a cli tool that uses rclone for backing up files to Dropbox to save battery.",
-                "Developed a resume generation system using TOML, LaTeX, and Jinja2 to separate formatting and content, allowing for quick iteration, fine-grained control, and versioning.",
+                "Developed a resume generation system using TOML, LaTeX, and Jinja2 to separate formatting and content, allowing for quick iteration, fine-grained control, and versioning through Git.",
                 "Enjoyed college course on Systems Programming, where projects were built from scratch in C, including a word frequency counter using a trie, Huffman encoding/decoding and simplified versions of GNU Tar, Talk, and Uniq.",
             ],
         },
