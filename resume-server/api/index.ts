@@ -23,13 +23,9 @@ async function getGHReleaseAsset(pattern: string, mime: string) {
             },
         }
     );
-    return new Response(file.body, {
+    const res = new Response(file.body, {
         headers: {
-            "content-type": mime,
-            // FIXME: change to only allow my sites
-            "access-control-allow-origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            "Content-Type": mime,
         },
     });
 }
