@@ -1,0 +1,9 @@
+{
+    "name": "resume-server",
+    "version": "0.0.1",
+    "description": "serves resume far and wide",
+    "dependencies": {
+        "octokit": "^3.1.0",
+        "resume": "workspace:^0.0.1"
+    }
+}

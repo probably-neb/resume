@@ -2,6 +2,7 @@
 	"name": "resume",
 	"main": "resume.tsx",
 	"type": "module",
+    "version": "0.0.1",
 	"dependencies": {
 		"cmd-ts": "^0.13.0",
 		"puppeteer": "^21.1.0",
