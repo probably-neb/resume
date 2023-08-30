@@ -13,15 +13,12 @@ const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const owner = "probably-neb";
 const repo = "resume";
 
-
-export default async function handler() {
-// export default async function handler(req: Request) {
-    // console.log(new URL(req.url).searchParams.get("filetype"))
+async function getGHReleaseAsset(pattern: string, mime: string) {
     const asset_id = await octokit.rest.repos
         .getLatestRelease({ owner, repo })
         .then(
             (res) =>
-                res.data.assets.find((asset) => asset.name === "resume.pdf")!.id
+                res.data.assets.find((asset) => asset.name === pattern)!.id
         );
 
     const file = await fetch(
@@ -36,11 +33,25 @@ export default async function handler() {
     );
     return new Response(file.body, {
         headers: {
-            "content-type": "application/pdf",
+            "content-type": mime,
+            // FIXME: change to only allow my sites
             "access-control-allow-origin": "*",
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
             "Access-Control-Allow-Headers": "Content-Type, Authorization",
-            // "content-disposition": "attachment; filename=resume.pdf"
         },
     });
+}
+export default async function handler(req: Request) {
+    const filetype = new URL(req.url).searchParams.get("filetype");
+    if (!filetype) {
+        return new Response("No filetype specified", { status: 400 });
+    }
+    switch (filetype) {
+        case "pdf":
+            return getGHReleaseAsset("resume.pdf", "application/pdf");
+        case "html":
+            return getGHReleaseAsset("resume.html", "text/html");
+        default:
+            return new Response("Invalid filetype", { status: 400 });
+    }
 }

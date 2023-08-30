@@ -1,6 +1,6 @@
 {
 	"name": "resume",
-	"main": "resume.tsx",
+	"main": "src/index.tsx",
 	"type": "module",
     "version": "0.0.1",
 	"dependencies": {

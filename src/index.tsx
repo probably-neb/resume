@@ -22,6 +22,10 @@ export async function saveHTML(config: Config, path: string): Promise<void> {
     await asyncPipe(readable, writeable);
 }
 
+export function getHTMLStream(config: Config) {
+    return renderToStaticNodeStream(<Resume config={config} />);
+}
+
 export async function generatePDF(config: Config): Promise<Buffer> {
     const resume = renderToString(<Resume config={config} />);
     const browser = await puppeteer.launch({headless: "new"})
