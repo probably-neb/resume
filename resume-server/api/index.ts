@@ -28,13 +28,22 @@ async function getGHReleaseAsset(pattern: string, mime: string) {
             "Content-Type": mime,
             // FIXME: change to only allow my sites
             "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET",
+            "Access-Control-Allow-Methods": "GET, OPTIONS",
             "Access-Control-Allow-Headers": "*",
         },
     });
 }
 
 export default async function handler(req: Request) {
+    if (req.method === "OPTIONS") {
+        return new Response(null, {
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, OPTIONS",
+                "Access-Control-Allow-Headers": "*",
+            },
+        });
+    }
     console.log(new URL(req.url).pathname);
     const reqPath = new URL(req.url).pathname;
     const filename = reqPath.split("/").pop();
@@ -45,8 +54,9 @@ export default async function handler(req: Request) {
     }
     if (!SUPPORTED_FILETYPES.includes(filetype)) {
         return new Response(
-            "Invalid filetype. Supported Filetypes are: " +
-                SUPPORTED_FILETYPES.join(", "),
+            `Invalid filetype: ${filetype}. Supported Filetypes are: ${SUPPORTED_FILETYPES.join(
+                ", "
+            )}`,
             { status: 400 }
         );
     }
