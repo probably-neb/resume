@@ -25,11 +25,11 @@ async function getGHReleaseAsset(pattern: string, mime: string) {
     );
     return new Response(file.body, {
         headers: {
-            "content-type": mime,
+            "Content-Type": mime,
             // FIXME: change to only allow my sites
-            "access-control-allow-origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET",
+            "Access-Control-Allow-Headers": "*",
         },
     });
 }
