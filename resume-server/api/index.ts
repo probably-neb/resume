@@ -22,7 +22,6 @@ async function getGHReleaseAsset(pattern: string, mime: string) {
             },
         }
     );
-    console.log(file.status);
     return new Response(file.body, {
         headers: {
             "content-type": mime,
