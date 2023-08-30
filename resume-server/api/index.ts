@@ -7,14 +7,7 @@ const repo = "resume";
 
 async function getGHReleaseAsset(pattern: string, mime: string) {
     const asset_id = await fetch(
-        `https://api.github.com/repos/${owner}/${repo}/releases/latest`,
-        {
-            headers: {
-                authorization: `token ${process.env.GITHUB_TOKEN}`,
-                accept: "application/octet-stream",
-                "X-GitHub-Api-Version": "2022-11-28",
-            },
-        }
+        `https://api.github.com/repos/${owner}/${repo}/releases/latest`
     )
         .then((res) => res.json())
         .then((res) => res.assets.find((asset) => asset.name === pattern)!.id);
@@ -29,6 +22,7 @@ async function getGHReleaseAsset(pattern: string, mime: string) {
             },
         }
     );
+    console.log(file.status);
     return new Response(file.body, {
         headers: {
             "content-type": mime,
