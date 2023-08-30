@@ -2,8 +2,8 @@
     "version": 2,
     "routes": [
         {
-            "src": "api/resume\\.(.*)",
-            "dest": "api/index.ts",
+            "src": "/api/resume.(.*)",
+            "dest": "/api/index.ts",
             "methods": ["GET", "OPTIONS"]
         }
     ]
