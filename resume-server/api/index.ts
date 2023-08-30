@@ -1,25 +1,23 @@
-import { Octokit } from "octokit";
-
 export const config = {
     runtime: "edge",
 };
-
-if (process.env.VERCEL_ENV === "development") {
-    // dotenv.config();
-}
-
-const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
 const owner = "probably-neb";
 const repo = "resume";
 
 async function getGHReleaseAsset(pattern: string, mime: string) {
-    const asset_id = await octokit.rest.repos
-        .getLatestRelease({ owner, repo })
-        .then(
-            (res) =>
-                res.data.assets.find((asset) => asset.name === pattern)!.id
-        );
+    const asset_id = await fetch(
+        `https://api.github.com/repos/${owner}/${repo}/releases/latest`,
+        {
+            headers: {
+                authorization: `token ${process.env.GITHUB_TOKEN}`,
+                accept: "application/octet-stream",
+                "X-GitHub-Api-Version": "2022-11-28",
+            },
+        }
+    )
+        .then((res) => res.json())
+        .then((res) => res.assets.find((asset) => asset.name === pattern)!.id);
 
     const file = await fetch(
         `https://api.github.com/repos/${owner}/${repo}/releases/assets/${asset_id}`,
