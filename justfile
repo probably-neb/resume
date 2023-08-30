@@ -52,4 +52,4 @@ release: build
 
     read -r -p "Notes: " notes
 
-    gh release create "$(date +%m-%d-%y)" --notes "${notes}" {{RESUME_PDF}}
+    gh release create "$(date +%m-%d-%y)" --notes "${notes}" {{RESUME_PDF}} {{RESUME_HTML}}
