@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "routes": [
+        {
+            "src": "api/resume\\.(.*)",
+            "dest": "api/index.ts",
+            "methods": ["GET", "OPTIONS"]
+        }
+    ]
+}

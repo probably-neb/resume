@@ -4,6 +4,7 @@ export const config = {
 
 const owner = "probably-neb";
 const repo = "resume";
+const SUPPORTED_FILETYPES = ["pdf", "html"];
 
 async function getGHReleaseAsset(pattern: string, mime: string) {
     const asset_id = await fetch(
@@ -32,17 +33,25 @@ async function getGHReleaseAsset(pattern: string, mime: string) {
         },
     });
 }
+
 export default async function handler(req: Request) {
-    const filetype = new URL(req.url).searchParams.get("filetype");
+    console.log(new URL(req.url).pathname);
+    const reqPath = new URL(req.url).pathname;
+    const filename = reqPath.split("/").pop();
+    console.log(filename);
+    const filetype = reqPath.split(".").pop();
     if (!filetype) {
         return new Response("No filetype specified", { status: 400 });
     }
-    switch (filetype) {
-        case "pdf":
-            return getGHReleaseAsset("resume.pdf", "application/pdf");
-        case "html":
-            return getGHReleaseAsset("resume.html", "text/html");
-        default:
-            return new Response("Invalid filetype", { status: 400 });
+    if (!SUPPORTED_FILETYPES.includes(filetype)) {
+        return new Response(
+            "Invalid filetype. Supported Filetypes are: " +
+                SUPPORTED_FILETYPES.join(", "),
+            { status: 400 }
+        );
     }
+    const mimetype = `${
+        filetype === "pdf" ? "application" : "text"
+    }/${filetype}`;
+    return getGHReleaseAsset(filename, mimetype);
 }
